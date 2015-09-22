@@ -1,0 +1,16 @@
+{
+  "name": "contrail-icm-os-controller",
+  "description": "This will deploy a ICM OpenStack controller server with Contrail updates",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "role[contrail-icm-common]",
+    "recipe[contrail::postoscontroller]"
+  ],
+  "env_run_lists": {
+  }
+}

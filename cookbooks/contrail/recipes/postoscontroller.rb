@@ -1,0 +1,39 @@
+# encoding: UTF-8
+# =================================================================
+# Licensed Materials - Property of IBM
+#
+# (c) Copyright IBM Corp. 2014 All Rights Reserved
+#
+# US Government Users Restricted Rights - Use, duplication or
+# disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+# =================================================================
+#
+# Cookbook Name:: contrail
+# Recipe:: postregion
+#
+
+template "/tmp/heat_to_append.erb" do
+   source "heat_to_append.erb"
+   action :create
+end
+ 
+
+
+#yum install -y python-contrail python-bottle python-gevent contrail-heat
+#%w{python-bottle python-gevent python-contrail contrail-heat}.each do |pkg|
+%w{python-bottle python-gevent python-contrail}.each do |pkg|
+	package pkg do
+		action :install
+	end
+end
+
+bash "update-heat" do
+    user "root"
+    code <<-EOH
+        sed -i 's|#plugin_dirs=/usr/lib64/heat,/usr/lib/heat|plugin_dirs=/usr/lib/heat/resources|' /etc/heat/heat.conf
+        cat /tmp/heat_to_append.erb >> /etc/heat/heat.conf
+        rm /tmp/heat_to_append.erb
+    EOH
+    not_if "grep -q 'plugin_dirs=/usr/lib/heat/resources' /etc/heat/heat.conf"
+end
+

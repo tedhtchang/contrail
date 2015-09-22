@@ -1,0 +1,15 @@
+{
+  "name": "contrail-icm-common",
+  "description": "This will add a Contrail repo and install Contrail setup utilities on you box",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[contrail::yumrepo]"
+  ],
+  "env_run_lists": {
+  }
+}

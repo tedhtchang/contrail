@@ -3,6 +3,13 @@
 #  Configuration for this cluster
 #
 ###########################################
+require 'uri'
+
+default['contrail']['setup_operatingsystem_dependencies_repo'] = "false"
+uri = URI("#{Chef::Config[:chef_server_url]}")
+chef_server_ip = uri.host
+default['contrail']['yum_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/contrail/"
+
 default['contrail']['openstack_release'] = "icehouse"
 default['contrail']['multi_tenancy'] = false
 default['contrail']['manage_neutron'] = false
@@ -15,8 +22,8 @@ default['contrail']['admin_password'] = "c0ntrail123"
 default['contrail']['admin_user'] = "admin"
 default['contrail']['admin_tenant_name'] = "admin"
 default['contrail']['region_name'] = "RegionOne"
-default['contrail']['yum_repo_url'] = "file:///opt/contrail/contrail_install_repo/"
-default['contrail']['provision'] = false
+#default['contrail']['yum_repo_url'] = "file:///opt/contrail/contrail_install_repo/"
+default['contrail']['provision'] = true
 # ha
 default['contrail']['ha'] = true
 default['contrail']['cfgm']['vip'] = "10.0.33.100"

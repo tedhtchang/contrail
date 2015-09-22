@@ -1,0 +1,22 @@
+{
+  "name": "contrail-icm-ct-controller",
+  "description": "This will deploy a ICM server with Contrail controller",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "role[contrail-icm-common]",
+    "role[contrail-database]",
+    "recipe[contrail::haproxy]",
+    "role[contrail-config]",
+    "role[contrail-control]",
+    "role[contrail-webui]",
+    "role[contrail-analytics]",
+    "recipe[contrail::postctcontroller]"
+  ],
+  "env_run_lists": {
+  }
+}
