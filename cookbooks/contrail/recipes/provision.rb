@@ -14,12 +14,16 @@ if node['contrail']['provision'] == false then
   exit
 end
 
+# get ip addresses using utils functions
+cfgm_ip = get_cfgm_virtual_ipaddr
+openstack_ip = get_openstack_controller_node_ip
+admin_password = get_admin_password
+
 bash "provision_metadata_services" do
     user "root"
     admin_user=node['contrail']['admin_user']
-    admin_password=node['contrail']['admin_password']
+#    admin_password=get_admin_password
     admin_tenant_name=node['contrail']['admin_tenant_name']
-    cfgm_ip=get_cfgm_virtual_ipaddr
     code <<-EOH
         python /opt/contrail/utils/provision_linklocal.py \
             --admin_user #{admin_user} \
@@ -37,9 +41,8 @@ end
 bash "provision_control" do
     user "root"
     admin_user=node['contrail']['admin_user']
-    admin_password=node['contrail']['admin_password']
+#    admin_password=get_admin_password
     admin_tenant_name=node['contrail']['admin_tenant_name']
-    cfgm_ip=get_cfgm_virtual_ipaddr
     ctrl_ip=node['ipaddress']
     asn=node['contrail']['router_asn']
     hostname=node['hostname']
@@ -60,7 +63,7 @@ end
 bash "provision_encap_type" do
     user "root"
     admin_user=node['contrail']['admin_user']
-    admin_password=node['contrail']['admin_password']
+#    admin_password=get_admin_password
     code <<-EOH
         python /opt/contrail/utils/provision_encap.py \
             --admin_user #{admin_user} \
@@ -74,12 +77,10 @@ get_compute_nodes.each do |server|
     bash "provision_vrouter" do
         user "root"
         admin_user=node['contrail']['admin_user']
-        admin_password=node['contrail']['admin_password']
+#        admin_password=get_admin_password
         admin_tenant_name=node['contrail']['admin_tenant_name']
         hostname=server['hostname']
         hostip=server['ipaddress']
-        cfgm_ip=get_cfgm_virtual_ipaddr
-        openstack_ip=openstack_controller_node_ip
         code <<-EOH
             python /opt/contrail/utils/provision_vrouter.py \
                 --admin_user #{admin_user} \

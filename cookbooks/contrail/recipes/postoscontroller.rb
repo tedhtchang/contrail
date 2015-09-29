@@ -12,8 +12,15 @@
 # Recipe:: postregion
 #
 
+class ::Chef::Recipe
+  include ::Contrail
+end
+
+admin_password = get_admin_password
+
 template "/tmp/heat_to_append.erb" do
    source "heat_to_append.erb"
+   variables(:admin_password => admin_password)
    action :create
 end
  

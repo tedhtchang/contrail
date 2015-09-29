@@ -12,6 +12,11 @@
 # Recipe:: postnetwork
 #
 #
+
+class ::Chef::Recipe
+  include ::Contrail
+end
+
 region_name = node['openstack']['region']
 openstack_release = node['contrail']['openstack_release']
 multi_tenancy = node['contrail']['multi_tenancy']
@@ -28,6 +33,10 @@ simple_token_item = data_bag_item("#{token_databag}",'openstack_simple_token',IO
 admin_password = admin_password_item['admin']
 simple_token = simple_token_item['openstack_simple_token']
 
+admin_password = get_admin_password
+simple_token= get_simple_token
+region_name=node['contrail']['region_name']
+  
 search_line='xxxyyyzzz'
 insert_line1=" region name=#{region_name}"
 insert_line2=" openstack release=#{openstack_release}"
@@ -36,6 +45,13 @@ insert_line4=" admin password=#{admin_password}"
 insert_line5=" simple token=#{simple_token}"
 insert_line6=" admin name=#{admin_name}"
 insert_line7=" admin tenant=#{admin_tenant}"
+
+bash "create-params" do
+    user "root"
+    code <<-EOH
+        > /tmp/params.txt
+    EOH
+end
 
 ruby_block "print_params" do
     block do

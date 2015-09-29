@@ -82,7 +82,7 @@ if node['contrail']['manage_neutron'] then
         region=node['contrail']['region_name']
         quant_server_ip=node['ipaddress']
         admin_user=node['contrail']['admin_user']
-        admin_password=node['contrail']['admin_password']
+        admin_password=get_admin_password
         admin_tenant_name=node['contrail']['admin_tenant_name']
         service_token=node['contrail']['service_token']
         openstack_root_pw=node['contrail']['openstack_root_pw']

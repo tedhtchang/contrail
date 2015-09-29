@@ -1,7 +1,7 @@
 
 [clients_contrail]
 user = <%=node['contrail']['admin_user']%>
-password = <%=node['contrail']['admin_password']%>
+password = <%=@admin_password%>
 tenant = <%=node['contrail']['admin_tenant_name']%>
 api_server = <%=node['contrail']['network_ip']%>
 api_base_url = /

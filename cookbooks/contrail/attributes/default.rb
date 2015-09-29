@@ -5,28 +5,37 @@
 ###########################################
 require 'uri'
 
+admin_name = node['openstack']['identity']['admin_user']
+admin_name = "admin" if admin_name.nil? || admin_name.empty?
+admin_tenant = node['openstack']['identity']['admin_tenant_name']
+admin_tenant = "admin" if admin_tenant.nil? || admin_tenant.empty?
+default['contrail']['admin_databag'] = node['openstack']['secret']['user_passwords_data_bag']
+default['contrail']['token_databag'] = node['openstack']['secret']['secrets_data_bag']
+  
 default['contrail']['setup_operatingsystem_dependencies_repo'] = "false"
 uri = URI("#{Chef::Config[:chef_server_url]}")
 chef_server_ip = uri.host
 default['contrail']['yum_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/contrail/"
-
+default['contrail']['keystone_ip'] = "#{node['openstack']['endpoints']['host']}"
+default['contrail']['os_controller_ip'] = "#{node['openstack']['endpoints']['host']}" 
+  
 default['contrail']['openstack_release'] = "icehouse"
 default['contrail']['multi_tenancy'] = false
 default['contrail']['manage_neutron'] = false
 default['contrail']['manage_nova_compute'] = true
 default['contrail']['router_asn'] = 64512
-default['contrail']['neutron_token'] = "c0ntrail123"
-default['contrail']['service_token'] = "c0ntrail123"
-default['contrail']['admin_token'] = "c0ntrail123"
-default['contrail']['admin_password'] = "c0ntrail123"
-default['contrail']['admin_user'] = "admin"
-default['contrail']['admin_tenant_name'] = "admin"
-default['contrail']['region_name'] = "RegionOne"
+default['contrail']['neutron_token'] = "token123"
+default['contrail']['service_token'] = "token123"
+default['contrail']['admin_token'] = "token123"
+default['contrail']['admin_password'] = "time4fun"
+default['contrail']['admin_user'] = admin_name
+default['contrail']['admin_tenant_name'] = admin_tenant
+default['contrail']['region_name'] = node['openstack']['region']
 #default['contrail']['yum_repo_url'] = "file:///opt/contrail/contrail_install_repo/"
 default['contrail']['provision'] = true
 # ha
-default['contrail']['ha'] = true
-default['contrail']['cfgm']['vip'] = "10.0.33.100"
+default['contrail']['ha'] = false
+default['contrail']['cfgm']['vip'] =  "#{node['contrail']['network_ip']}"
 default['contrail']['cfgm']['pfxlen'] = "24"
 # Openstack
 default['contrail']['openstack_controller_role'] = "contrail-openstack"

@@ -6,7 +6,7 @@
 #
 
 module ::Contrail
-
+  
   def get_all_roles_nodes
       result = search(:node, "chef_environment:#{node.chef_environment}")
       if result.any? { |x| x['hostname'] == node['hostname'] }
@@ -51,12 +51,13 @@ module ::Contrail
   end
 
   def get_openstack_controller_node_ip
-    controller_nodes = search_for(node['contrail']['openstack_controller_role'])
-    msg = "Can't find OpenStack controller node with role '#{node['contrail']['openstack_controller_role']}'"
-    if controller_nodes.length < 1
-      raise msg
-    end
-    controller_nodes.first["ipaddress"]
+#    controller_nodes = search_for(node['contrail']['openstack_controller_role'])
+#    msg = "Can't find OpenStack controller node with role '#{node['contrail']['openstack_controller_role']}'"
+#    if controller_nodes.length < 1
+#      raise msg
+#    end
+#    controller_nodes.first["ipaddress"]
+    return "#{node['contrail']['os_controller_ip']}"
   end
 
   def get_contrail_controller_node_ip
@@ -103,4 +104,23 @@ module ::Contrail
       result.each { |node| node.default['contrail']['node_number'] = "#{result.rindex(node)+1}" }
   end
 
+  def get_admin_password
+      admin_databag = node['contrail']['admin_databag']
+      admin_password_item = data_bag_item("#{admin_databag}",'admin',IO.read('/etc/chef/encrypted_data_bag_secret').strip())
+      result = admin_password_item['admin']
+      if result.nil? or result.empty?
+           result=node['contrail']['admin_password']
+      end
+      return result
+  end
+
+  def get_simple_token
+      token_databag = node['contrail']['token_databag']
+      simple_token_item = data_bag_item("#{token_databag}",'openstack_simple_token',IO.read('/etc/chef/encrypted_data_bag_secret').strip())
+      result = simple_token_item['openstack_simple_token']
+      if result.nil? or result.empty?
+           result=node['contrail']['admin_token']
+      end
+    return result
+end  
 end
