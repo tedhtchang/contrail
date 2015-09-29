@@ -19,7 +19,7 @@ default['contrail']['yum_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/
 default['contrail']['keystone_ip'] = "#{node['openstack']['endpoints']['host']}"
 default['contrail']['os_controller_ip'] = "#{node['openstack']['endpoints']['host']}" 
   
-default['contrail']['openstack_release'] = "icehouse"
+default['contrail']['openstack_release'] = "kilo"
 default['contrail']['multi_tenancy'] = false
 default['contrail']['manage_neutron'] = false
 default['contrail']['manage_nova_compute'] = true
