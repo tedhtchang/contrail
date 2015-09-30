@@ -5,6 +5,7 @@
 ###########################################
 require 'uri'
 
+### The block for ICM integration  ###
 admin_name = node['openstack']['identity']['admin_user']
 admin_name = "admin" if admin_name.nil? || admin_name.empty?
 admin_tenant = node['openstack']['identity']['admin_tenant_name']
@@ -18,6 +19,8 @@ chef_server_ip = uri.host
 default['contrail']['yum_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/contrail/"
 default['contrail']['keystone_ip'] = "#{node['openstack']['endpoints']['host']}"
 default['contrail']['os_controller_ip'] = "#{node['openstack']['endpoints']['host']}" 
+
+### The block for ICM integration  ###
   
 default['contrail']['openstack_release'] = "kilo"
 default['contrail']['multi_tenancy'] = false
