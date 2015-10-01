@@ -35,7 +35,7 @@ bash "update-nova" do
     not_if "grep -q '# vif_driver=nova.virt.libvirt.vif.LibvirtGenericVIFDriver' /etc/nova/nova.conf"
 end
 
-search_line="compute_monitors = ComputeDriverCPUMonitor"
+search_line="compute_monitors=ComputeDriverCPUMonitor"
 insert_line1="libvirt_vif_driver = nova_contrail_vif.contrailvif.VRouterVIFDriver"
 insert_line2="neutron_connection_host = #{node['contrail']['network_ip']}"
 
@@ -65,10 +65,10 @@ end
 #    not_if "grep -q '/lib/modules/2.6.32-358.el6.x86_64/extra/net/vrouter/vrouter.ko' /etc/contrail/agent_param.tmpl"
 #end
 
-bash "update-ipaddress" do
-    user "root"
-    code <<-EOH
-        sed -i 's|{}|#{node['contrail']['compute']['ip']}|' /etc/nova/nova.conf
-        systemctl restart openstack-nova-compute
-    EOH
-end
+#bash "update-ipaddress" do
+#    user "root"
+#    code <<-EOH
+#        sed -i 's|{}|#{node['contrail']['compute']['ip']}|' /etc/nova/nova.conf
+#        systemctl restart openstack-nova-compute
+#    EOH
+#end
