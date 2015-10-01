@@ -23,6 +23,8 @@ bash "remove-initial-cassandra-data-dir" do
         mv /var/lib/cassandra /var/lib/cassandra.$TIMESTAMP
         mkdir /var/lib/cassandra
         chown cassandra:cassandra /var/lib/cassandra
+        mkdir /var/lib/cassandra/data/ContrailAnalytics
+        mkdir /var/crashes
     EOC
 end
 

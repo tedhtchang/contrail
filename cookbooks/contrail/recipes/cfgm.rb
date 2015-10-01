@@ -31,6 +31,7 @@ end
 %w{ ifmap-server
     contrail-config
     contrail-utils
+    python-paramiko
 }.each do |pkg|
     package pkg do
         action :upgrade
