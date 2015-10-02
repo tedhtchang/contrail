@@ -12,6 +12,7 @@ end
 %w{ neutron-plugin-contrail
     python-simplejson
     python-lxml
+    contrail-setup
 }.each do |pkg|
     package pkg do
         action :upgrade
@@ -38,6 +39,7 @@ rescue
 end
 
 cfgm_vip = get_cfgm_virtual_ipaddr
+admin_password = get_admin_password
 
 template "/etc/neutron/plugin.ini" do
     source "contrail-neutron-plugin.ini.erb"
@@ -82,7 +84,7 @@ if node['contrail']['manage_neutron'] then
         region=node['contrail']['region_name']
         quant_server_ip=node['ipaddress']
         admin_user=node['contrail']['admin_user']
-        admin_password=get_admin_password
+        admin_password=admin_password
         admin_tenant_name=node['contrail']['admin_tenant_name']
         service_token=node['contrail']['service_token']
         openstack_root_pw=node['contrail']['openstack_root_pw']
