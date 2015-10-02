@@ -79,7 +79,7 @@ bash "neutron-server-setup" do
 end
 
 # setup neutron endpoint in keystone if manage_neutron flag is enabled
-if node['contrail']['manage_neutron'] then
+if node['contrail']['manage_neutron'] == true then
     bash "neutron-endpoint-setup" do
         user  "root"
         region=node['contrail']['region_name']
