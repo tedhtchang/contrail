@@ -50,6 +50,7 @@ template "/etc/neutron/plugin.ini" do
     group "root"
     mode 00644
     variables(:keystone_server_ip => openstack_controller_node_ip,
+              :admin_token        => admin_token,
               :cfgm_vip           => cfgm_vip)
     notifies :restart, "service[neutron-server]", :immediately
 end
