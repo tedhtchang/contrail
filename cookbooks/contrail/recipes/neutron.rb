@@ -40,6 +40,9 @@ end
 
 cfgm_vip = get_cfgm_virtual_ipaddr
 admin_password = get_admin_password
+neutron_token = get_simple_token
+service_token = get_simple_token
+admin_token = get_simple_token
 
 template "/etc/neutron/plugin.ini" do
     source "contrail-neutron-plugin.ini.erb"
@@ -59,11 +62,11 @@ bash "neutron-server-setup" do
         quantum_port=9696
     end
     code <<-EOC
-        echo "SERVICE_TOKEN=#{node['contrail']['neutron_token']}" > /etc/contrail/ctrl-details
+        echo "SERVICE_TOKEN=#{neutron_token}" > /etc/contrail/ctrl-details
         echo "SERVICE_TENANT=service" >> /etc/contrail/ctrl-details
         echo "AUTH_PROTOCOL=#{node['contrail']['protocol']['keystone']}" >> /etc/contrail/ctrl-details
         echo "QUANTUM_PROTOCOL=http" >> /etc/contrail/ctrl-details
-        echo "ADMIN_TOKEN=#{node['contrail']['admin_token']}" >> /etc/contrail/ctrl-details
+        echo "ADMIN_TOKEN=#{admin_token}" >> /etc/contrail/ctrl-details
         echo "CONTROLLER=#{openstack_controller_node_ip}" >> /etc/contrail/ctrl-details
         echo "AMQP_SERVER=#{cfgm_vip}" >> /etc/contrail/ctrl-details
         echo "QUANTUM=#{node['ipaddress']}" >> /etc/contrail/ctrl-details
@@ -86,7 +89,6 @@ if node['contrail']['manage_neutron'] then
         admin_user=node['contrail']['admin_user']
         admin_password=admin_password
         admin_tenant_name=node['contrail']['admin_tenant_name']
-        service_token=node['contrail']['service_token']
         openstack_root_pw=node['contrail']['openstack_root_pw']
         code <<-EOC
             /usr/bin/setup-quantum-in-keystone --ks_server_ip #{ks_server_ip} --quant_server_ip #{quant_server_ip} --tenant #{admin_tenant_name} --user #{admin_user} --password #{admin_password} --svc_password #{service_token} --root_password #{openstack_root_pw} --region_name #{region}

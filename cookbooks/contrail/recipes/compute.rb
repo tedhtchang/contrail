@@ -44,15 +44,17 @@ service "messagebus" do
 end
 
 openstack_controller_node_ip = get_openstack_controller_node_ip
+service_token = get_simple_token
+admin_token = get_simple_token
 
 bash "compute-server-setup" do
     user  "root"
     code <<-EOC
-        echo "SERVICE_TOKEN=#{node['contrail']['service_token']}" > /etc/contrail/ctrl-details
+        echo "SERVICE_TOKEN=#{service_token}" > /etc/contrail/ctrl-details
         echo "SERVICE_TENANT=service" >> /etc/contrail/ctrl-details
         echo "AUTH_PROTOCOL=#{node['contrail']['protocol']['keystone']}" >> /etc/contrail/ctrl-details
         echo "QUANTUM_PROTOCOL=http" >> /etc/contrail/ctrl-details
-        echo "ADMIN_TOKEN=#{node['contrail']['admin_token']}" >> /etc/contrail/ctrl-details
+        echo "ADMIN_TOKEN=#{admin_token}" >> /etc/contrail/ctrl-details
         echo "CONTROLLER=#{openstack_controller_node_ip}" >> /etc/contrail/ctrl-details
         echo "AMQP_SERVER=#{openstack_controller_node_ip}" >> /etc/contrail/ctrl-details
         echo "QUANTUM=#{node['ipaddress']}" >> /etc/contrail/ctrl-details
