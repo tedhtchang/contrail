@@ -116,8 +116,8 @@ module ::Contrail
 
   def get_simple_token
       token_databag = node['contrail']['token_databag']
-      simple_token_item = data_bag_item("#{token_databag}",'openstack_simple_token',IO.read('/etc/chef/encrypted_data_bag_secret').strip())
-      result = simple_token_item['openstack_simple_token']
+      simple_token_item = data_bag_item("#{token_databag}",'openstack_identity_bootstrap_token',IO.read('/etc/chef/encrypted_data_bag_secret').strip())
+      result = simple_token_item['openstack_identity_bootstrap_token']
       if result.nil? or result.empty?
            result=node['contrail']['admin_token']
       end
