@@ -52,7 +52,7 @@ template "/etc/contrail/agent_param" do
     mode 00644
     variables(
         :kversion => `uname -r`.chomp,
-        :interface => node['contrail']['compute']['interface'],
+        :interface => node['contrail']['compute']['interface']
     )
 end
 
@@ -76,13 +76,15 @@ template "/etc/sysconfig/network-scripts/ifcfg-vhost0" do
         :dns3 => node['contrail']['compute']['dns3'],
         :domain => node['contrail']['compute']['domain']
     )
+    not_if "grep -e '^vrouter$' /etc/modules"
 end
 
 template "/etc/sysconfig/network-scripts/ifcfg-#{node['contrail']['compute']['interface']}" do
     source "network.eth.erb"
     variables(
-        :interface => node['contrail']['compute']['interface'],
+        :interface => node['contrail']['compute']['interface']
     )
+    not_if "grep -e '^vrouter$' /etc/modules"
 end
 
 bash "enable-vrouter" do
