@@ -9,6 +9,7 @@
   "chef_type": "role",
   "run_list": [
     "role[contrail-icm-common]",
+    "recipe[contrail::neutron]",
     "recipe[contrail::postoscontroller]"
   ],
   "env_run_lists": {
