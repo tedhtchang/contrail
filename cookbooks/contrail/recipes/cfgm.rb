@@ -116,6 +116,9 @@ else
   rabbit_port = 5672
 end
 
+admin_password = get_admin_password
+admin_token = get_simple_token
+
 %w{ contrail-discovery
     contrail-svc-monitor
     contrail-api
@@ -130,6 +133,8 @@ end
         variables(:servers            => database_nodes,
                   :cfgm_vip           => cfgm_vip,
                   :rabbit_port        => rabbit_port,
+                  :admin_password     => admin_password,
+                  :admin_token        => admin_token,
                   :keystone_server_ip => openstack_controller_node_ip)
         notifies :restart, "service[#{pkg}]", :immediately
     end
