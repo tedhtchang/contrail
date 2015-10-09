@@ -42,7 +42,13 @@ end
         notifies :restart, "service[contrail-database]", :delayed
     end
 end
-
+cfgm_vip = get_cfgm_virtual_ipaddr
+template "/etc/contrail/contrail-database-nodemgr.conf" do
+  source "contrail-database-nodemgr.conf.erb"
+  mode 00644
+  variables( :cfgm_vip           => cfgm_vip)
+  notifies :restart, "service[supervisor-database]", :delayed
+end
 %w{ supervisor-database contrail-database }.each do |pkg|
     service pkg do
         action [:enable, :start]
