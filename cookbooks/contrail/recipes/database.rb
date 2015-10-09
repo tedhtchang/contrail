@@ -43,7 +43,7 @@ end
     end
 end
 cfgm_vip = get_cfgm_virtual_ipaddr
-template "contrail-database-nodemgr.conf" do
+template "/etc/contrail/contrail-database-nodemgr.conf" do
   source "contrail-database-nodemgr.conf.erb"
   mode 00644
   variables( :cfgm_vip           => cfgm_vip)
