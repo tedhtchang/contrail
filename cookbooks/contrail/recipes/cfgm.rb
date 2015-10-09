@@ -116,9 +116,6 @@ else
   rabbit_port = 5672
 end
 
-admin_password = get_admin_password
-admin_token = get_simple_token
-
 %w{ contrail-discovery
     contrail-svc-monitor
     contrail-api
@@ -133,9 +130,19 @@ admin_token = get_simple_token
         variables(:servers            => database_nodes,
                   :cfgm_vip           => cfgm_vip,
                   :rabbit_port        => rabbit_port,
-                  :admin_password     => admin_password,
-                  :admin_token        => admin_token,
                   :keystone_server_ip => openstack_controller_node_ip)
+        notifies :restart, "service[#{pkg}]", :immediately
+    end
+end
+
+%w{ contrail-discovery
+    contrail-api
+}.each do |pkg|
+    template "/etc/contrail/supervisord_config_files/#{pkg}.ini" do
+        source "#{pkg}.ini.erb"
+        owner "contrail"
+        group "contrail"
+        mode 00640
         notifies :restart, "service[#{pkg}]", :immediately
     end
 end
