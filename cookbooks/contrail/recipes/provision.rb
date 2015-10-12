@@ -14,6 +14,14 @@ if node['contrail']['provision'] == false then
   exit
 end
 
+%w{ supervisor-database
+    supervisor-config
+}.each do |pkg|
+    service pkg do
+        action [:restart]
+    end
+end
+
 # get ip addresses using utils functions
 cfgm_ip = get_cfgm_virtual_ipaddr
 openstack_ip = get_openstack_controller_node_ip
