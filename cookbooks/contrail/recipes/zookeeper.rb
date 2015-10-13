@@ -31,6 +31,14 @@ file "/etc/zookeeper/conf/myid" do
     notifies :restart, "service[zookeeper]", :immediately
 end
 
+file "/var/lib/zookeeper/myid" do
+    user "root"
+    group "root"
+    mode 00644
+    content node['contrail']['node_number']
+    notifies :restart, "service[zookeeper]", :immediately
+end
+
 service "zookeeper" do
     action [:enable, :start]
 end
