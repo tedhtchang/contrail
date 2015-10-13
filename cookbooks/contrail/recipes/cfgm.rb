@@ -140,6 +140,18 @@ admin_token = get_simple_token
     end
 end
 
+%w{ contrail-discovery
+    contrail-api
+}.each do |pkg|
+    template "/etc/contrail/supervisord_config_files/#{pkg}.ini" do
+        source "#{pkg}.ini.erb"
+        owner "contrail"
+        group "contrail"
+        mode 00640
+        notifies :restart, "service[#{pkg}]", :immediately
+    end
+end
+
 %w{ contrail-config-nodemgr
 }.each do |pkg|
     template "/etc/contrail/#{pkg}.conf" do
