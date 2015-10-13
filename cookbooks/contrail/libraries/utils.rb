@@ -23,6 +23,8 @@ module ::Contrail
       if not result.include?(node) and node.run_list.roles.include?('contrail-database')
           result.push(node)
       end
+      result.sort! { |a, b| a['ipaddress'] <=> b['ipaddress'] }
+      result.each { |node| node.default['contrail']['node_number'] = "#{result.rindex(node)+1}" }
       return result
   end
 
