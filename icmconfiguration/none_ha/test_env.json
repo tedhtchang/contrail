@@ -225,13 +225,10 @@
     "openstack": {
       "endpoints": {
         "network-openvswitch": {
-
         },
         "compute-vnc-bind": {
-          "bind_interface": "vhost0"
-        },
+         },
         "compute-vnc-proxy-bind": {
-          "bind_interface": "vhost0"
         }
       },
       "compute": {
