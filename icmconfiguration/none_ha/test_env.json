@@ -79,7 +79,7 @@
   "default_attributes": {
     "contrail": {
       "haproxy": true,
-      "manage_nova_compute": true,
+      "manage_nova_compute": false,
       "manage_neutron": false,
       "multi_tenancy": true,
       "router_asn": "64512",
