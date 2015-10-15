@@ -42,7 +42,9 @@ end
         notifies :restart, "service[contrail-database]", :delayed
     end
 end
-cfgm_vip = get_cfgm_virtual_ipaddr
+#cfgm_vip = get_cfgm_virtual_ipaddr
+cfgm_vip = node['ipaddress']
+
 template "/etc/contrail/contrail-database-nodemgr.conf" do
   source "contrail-database-nodemgr.conf.erb"
   mode 00644

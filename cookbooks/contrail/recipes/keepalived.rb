@@ -13,7 +13,7 @@ package "keepalived" do
     action :upgrade
 end
 
-interface = "eth1"
+interface = node['contrail']['ct_controller_interface']
 virtual_ipaddr = get_cfgm_virtual_ipaddr
 virtual_pfxlen = get_cfgm_virtual_pfxlen
 get_database_nodes
