@@ -123,6 +123,17 @@ module ::Contrail
       if result.nil? or result.empty?
            result=node['contrail']['admin_token']
       end
-    return result
-end  
+      return result
+  end  
+  
+  def get_neutron_password
+      neutron_databag = node['contrail']['service_databag']
+      neutron_password_item = data_bag_item("#{neutron_databag}",'openstack-network',IO.read('/etc/chef/encrypted_data_bag_secret').strip())
+      result = neutron_password_item['openstack-network']
+      if result.nil? or result.empty?
+           result="neutron999"
+      end
+      return result
+  end
+
 end

@@ -12,7 +12,8 @@ admin_tenant = node['openstack']['identity']['admin_tenant_name']
 admin_tenant = "admin" if admin_tenant.nil? || admin_tenant.empty?
 default['contrail']['admin_databag'] = node['openstack']['secret']['user_passwords_data_bag']
 default['contrail']['token_databag'] = node['openstack']['secret']['secrets_data_bag']
-  
+default['contrail']['service_databag'] = node['openstack']['secret']['service_passwords_data_bag']
+
 default['contrail']['setup_operatingsystem_dependencies_repo'] = "false"
 uri = URI("#{Chef::Config[:chef_server_url]}")
 chef_server_ip = uri.host

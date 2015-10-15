@@ -44,3 +44,15 @@ bash "update-heat" do
     not_if "grep -q 'plugin_dirs=/usr/lib/heat/resources' /etc/heat/heat.conf"
 end
 
+neutron_password = get_neutron_password
+
+bash "update-neutron" do
+    user "root"
+    code <<-EOH
+        sed -i '/service_plugins = neutron_plugin_contrail.plugins.opencontrail.loadbalancer.plugin.LoadBalancerPlugin/d' /etc/neutron/neutron.conf
+        sed -i 's|admin_password =|admin_password = #{neutron_password}|' /etc/neutron/neutron.conf
+        sed -i '/admin_token/d' /etc/neutron/neutron.conf
+    EOH
+    not_if "grep -q 'admin_password = #{neutron_password}' /etc/neutron/neutron.conf"
+end
+
