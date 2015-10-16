@@ -89,7 +89,7 @@ end
 
 bash "enable-vrouter" do
     user "root"
-    vrouter_mod="/lib/modules/#{node['contrail']['kernel_number']}/extra/net/vrouter/vrouter.ko"
+    vrouter_mod="/lib/modules/#{node['contrail']['kernel_version']}/extra/net/vrouter/vrouter.ko"
     interface=node['contrail']['compute']['interface']
     macaddr=`cat /sys/class/net/#{interface}/address`.chomp
     code <<-EOC

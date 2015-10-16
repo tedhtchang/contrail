@@ -21,7 +21,7 @@ default['contrail']['yum_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/
 default['contrail']['keystone_ip'] = "#{node['openstack']['endpoints']['host']}"
 default['contrail']['os_controller_ip'] = "#{node['openstack']['endpoints']['host']}" 
 default['contrail']['ct_controller_interface'] = "eno16777728" 
-default['contrail']['kernel_number'] = "3.10.0-229.el7.x86_64"
+default['contrail']['kernel_version'] = "3.10.0-229.el7.x86_64"
     
 ### The block for ICM integration  ###
   
