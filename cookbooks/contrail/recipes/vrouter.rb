@@ -15,7 +15,7 @@ else
     if not platform?("redhat", "centos", "fedora")
         pkgs = %w( contrail-nodemgr contrail-nova-vif contrail-setup contrail-vrouter contrail-vrouter-init linux-crashdump python-iniparse )
     else
-        pkgs = %w( abrt contrail-nodemgr contrail-nova-vif contrail-setup contrail-vrouter contrail-vrouter-init openstack-utils python-thrift )
+        pkgs = %w( abrt contrail-nodemgr contrail-nova-vif contrail-setup contrail-vrouter contrail-vrouter-init openstack-utils python-thrift contrail-vrouter-common )
     end
 end
 
@@ -29,7 +29,7 @@ pkgs.each do |pkg|
     end
 end
 
-contrail_controller_node_ip = get_contrail_controller_node_ip
+contrail_controller_node_ip = get_cfgm_virtual_ipaddr
 
 template "/etc/contrail/vrouter_nodemgr_param" do
     source "vrouter_nodemgr_param.erb"
