@@ -20,7 +20,7 @@ chef_server_ip = uri.host
 default['contrail']['yum_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/contrail/"
 default['contrail']['keystone_ip'] = "#{node['openstack']['endpoints']['host']}"
 default['contrail']['os_controller_ip'] = "#{node['openstack']['endpoints']['host']}" 
-default['contrail']['ct_controller_interface'] = "eno16777728" 
+default['contrail']['ct_controller_interface'] = node['network']['default_interface'] 
 default['contrail']['kernel_version'] = "3.10.0-229.el7.x86_64"
     
 ### The block for ICM integration  ###
