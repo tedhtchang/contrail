@@ -42,7 +42,7 @@ default['contrail']['provision'] = true
 # ha
 default['contrail']['ha'] = false
 default['contrail']['cfgm']['vip'] =  "#{node['contrail']['network_ip']}"
-default['contrail']['cfgm']['pfxlen'] = "24"
+default['contrail']['cfgm']['pfxlen'] = "#{node['contrail']['network_pfxlen']}"
 # Openstack
 default['contrail']['openstack_controller_role'] = "contrail-openstack"
 default['contrail']['openstack_root_pw'] = "contrail123"
