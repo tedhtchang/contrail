@@ -37,3 +37,7 @@ if node['contrail']['setup_operatingsystem_dependencies_repo'] == true
         end
 end
 
+service "ntpd" do
+    action [:enable, :start]
+end
+
