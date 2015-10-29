@@ -28,7 +28,7 @@ end
 
 #yum install -y python-contrail python-bottle python-gevent contrail-heat
 #%w{python-bottle python-gevent python-contrail contrail-heat}.each do |pkg|
-%w{python-bottle python-gevent python-contrail}.each do |pkg|
+%w{python-bottle python-gevent python-contrail contrail-heat}.each do |pkg|
 	package pkg do
 		action :install
 	end
