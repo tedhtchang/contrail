@@ -78,19 +78,21 @@
   "chef_type": "environment",
   "default_attributes": {
     "contrail": {
+      "ha": false,
       "haproxy": true,
       "manage_nova_compute": false,
       "manage_neutron": false,
-      "multi_tenancy": true,
+      "multi_tenancy": false,
       "router_asn": "64512",
       "network_ip": "9.30.30.53",
+      "network_pfxlen": "25",
       "compute": {
         "dns3": "9.0.0.3",
         "dns2": "9.0.0.2",
         "dns1": "9.30.140.13",
         "netmask": "255.255.255.128",
         "interface": "eno16777728",
-        "cidr": "9.30.30.0/26",
+        "cidr": "9.30.30.0/25",
         "gateway": "9.30.30.1",
         "domain": "cloud.svl.ibm.com"
       }
@@ -227,7 +229,7 @@
         "network-openvswitch": {
         },
         "compute-vnc-bind": {
-         },
+        },
         "compute-vnc-proxy-bind": {
         }
       },
