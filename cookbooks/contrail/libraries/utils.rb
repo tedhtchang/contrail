@@ -23,6 +23,8 @@ module ::Contrail
       if not result.include?(node) and node.run_list.roles.include?('contrail-database')
           result.push(node)
       end
+      result.sort! { |a, b| a['ipaddress'] <=> b['ipaddress'] }
+      result.each { |node| node.default['contrail']['node_number'] = "#{result.rindex(node)+1}" }
       return result
   end
 
@@ -121,6 +123,17 @@ module ::Contrail
       if result.nil? or result.empty?
            result=node['contrail']['admin_token']
       end
-    return result
-end  
+      return result
+  end  
+  
+  def get_neutron_password
+      neutron_databag = node['contrail']['service_databag']
+      neutron_password_item = data_bag_item("#{neutron_databag}",'openstack-network',IO.read('/etc/chef/encrypted_data_bag_secret').strip())
+      result = neutron_password_item['openstack-network']
+      if result.nil? or result.empty?
+           result="neutron999"
+      end
+      return result
+  end
+
 end

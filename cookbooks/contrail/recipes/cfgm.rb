@@ -59,10 +59,16 @@ if node['contrail']['rabbitmq'] then
         source "rabbitmq-env.conf.erb"
         mode 0644
     end
+    rabbit_cluster=""
 
+    config_nodes.each do |node|
+      rabbit_cluster=rabbit_cluster+"'"+node['hostname']+"',"
+    end
+    rabbit_cluster=rabbit_cluster[0..rabbit_cluster.length-2]
+    
     template "/etc/rabbitmq/rabbitmq.config" do
         source "rabbitmq.config.erb"
-        variables(:servers => config_nodes)
+        variables(:servers => rabbit_cluster)
         mode 00644
         notifies :restart, "service[supervisor-support-service]", :delayed
     end

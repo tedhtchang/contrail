@@ -12,14 +12,18 @@ admin_tenant = node['openstack']['identity']['admin_tenant_name']
 admin_tenant = "admin" if admin_tenant.nil? || admin_tenant.empty?
 default['contrail']['admin_databag'] = node['openstack']['secret']['user_passwords_data_bag']
 default['contrail']['token_databag'] = node['openstack']['secret']['secrets_data_bag']
-  
+default['contrail']['service_databag'] = node['openstack']['secret']['service_passwords_data_bag']
+
 default['contrail']['setup_operatingsystem_dependencies_repo'] = "false"
 uri = URI("#{Chef::Config[:chef_server_url]}")
 chef_server_ip = uri.host
 default['contrail']['yum_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/contrail/"
+default['contrail']['yum_compute_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/contrail-compute/"
 default['contrail']['keystone_ip'] = "#{node['openstack']['endpoints']['host']}"
 default['contrail']['os_controller_ip'] = "#{node['openstack']['endpoints']['host']}" 
-
+default['contrail']['ct_controller_interface'] = node['network']['default_interface'] 
+default['contrail']['kernel_version'] = "3.10.0-229.el7.x86_64"
+    
 ### The block for ICM integration  ###
   
 default['contrail']['openstack_release'] = "kilo"
@@ -39,7 +43,7 @@ default['contrail']['provision'] = true
 # ha
 default['contrail']['ha'] = false
 default['contrail']['cfgm']['vip'] =  "#{node['contrail']['network_ip']}"
-default['contrail']['cfgm']['pfxlen'] = "24"
+default['contrail']['cfgm']['pfxlen'] = "#{node['contrail']['network_pfxlen']}"
 # Openstack
 default['contrail']['openstack_controller_role'] = "contrail-openstack"
 default['contrail']['openstack_root_pw'] = "contrail123"
