@@ -62,7 +62,7 @@ if node['contrail']['rabbitmq'] then
     rabbit_cluster=""
 
     config_nodes.each do |node|
-      rabbit_cluster=rabbit_cluster+"'"+node['hostname']+"',"
+      rabbit_cluster=rabbit_cluster+"'rabbit@"+node['hostname']+"',"
     end
     rabbit_cluster=rabbit_cluster[0..rabbit_cluster.length-2]
     
