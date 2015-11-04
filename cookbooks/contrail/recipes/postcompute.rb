@@ -64,11 +64,3 @@ bash "update-agent-param" do
     EOH
     not_if "grep -q '/lib/modules/3.10.0-229.el7.x86_64/extra/net/vrouter/vrouter.ko' /etc/contrail/agent_param.tmpl"
 end
-
-#bash "update-ipaddress" do
-#    user "root"
-#    code <<-EOH
-#        sed -i 's|{}|#{node['contrail']['compute']['ip']}|' /etc/nova/nova.conf
-#        systemctl restart openstack-nova-compute
-#    EOH
-#end

@@ -88,7 +88,9 @@ end
 
 template "/var/lib/rabbitmq/.erlang.cookie" do
     source "rabbitmq.cookie.erb"
-    mode 00644
+    owner 'rabbitmq'
+    group 'rabbitmq'
+    mode 00400
     notifies :restart, "service[rabbitmq-server]", :immediately
 end
 
