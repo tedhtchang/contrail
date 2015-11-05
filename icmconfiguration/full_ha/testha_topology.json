@@ -1,0 +1,112 @@
+{
+  "name": "testha",
+  "description": "Controller + N Compute Topology - x86 KVM",
+  "environment": "testha",
+  "run_sequentially": false,
+  "orchestration": "ha_controller_n_compute",
+  "nodes": [
+    {
+      "fqdn": "sunnyvale-ctl.cloud.svl.ibm.com",
+      "password": "time4fun",
+      "quit_on_error": true,
+      "run_order_number": 4,
+      "runlist": [
+        "role[ibm-os-ha-controller-node]",
+        "recipe[contrail::yum-os-controller-repo]",
+        "recipe[contrail::neutron]",
+        "recipe[contrail::postoscontroller]"
+      ]
+    },
+    {
+      "fqdn": "sunnyvale-ctl2.cloud.svl.ibm.com",
+      "password": "time4fun",
+      "quit_on_error": true,
+      "run_order_number": 4,
+      "runlist": [
+        "role[ibm-os-ha-controller-node]",
+        "recipe[contrail::yum-os-controller-repo]",
+        "recipe[contrail::neutron]",
+        "recipe[contrail::postoscontroller]"
+      ]
+    },
+    {
+      "fqdn": "sunnyvale-ctl3.cloud.svl.ibm.com",
+      "password": "time4fun",
+      "quit_on_error": true,
+      "run_order_number": 4,
+      "runlist": [
+        "role[ibm-os-ha-controller-node]",
+        "recipe[contrail::yum-os-controller-repo]",
+        "recipe[contrail::neutron]",
+        "recipe[contrail::postoscontroller]"
+      ]
+    },
+    {
+      "description": "This node was added via the deploy node command",
+      "fqdn": "sunnyvale-net.cloud.svl.ibm.com",
+      "password": "time4fun",
+      "quit_on_error": false,
+      "run_order_number": 11,
+      "runlist": [
+        "recipe[contrail::prectcontroller]",
+        "recipe[contrail::yumrepo]",
+        "role[contrail-database]",
+        "role[contrail-config]",
+        "role[contrail-control]",
+        "role[contrail-webui]",
+        "role[contrail-analytics]",
+        "recipe[contrail::postctcontroller]"
+      ]
+    },
+    {
+      "description": "This node was added via the deploy node command",
+      "fqdn": "sunnyvale-net2.cloud.svl.ibm.com",
+      "password": "time4fun",
+      "quit_on_error": false,
+      "run_order_number": 11,
+      "runlist": [
+        "recipe[contrail::prectcontroller]",
+        "recipe[contrail::yumrepo]",
+        "role[contrail-database]",
+        "role[contrail-config]",
+        "role[contrail-control]",
+        "role[contrail-webui]",
+        "role[contrail-analytics]",
+        "recipe[contrail::postctcontroller]"
+      ]
+    },
+    {
+      "description": "This node was added via the deploy node command",
+      "fqdn": "sunnyvale-net3.cloud.svl.ibm.com",
+      "password": "time4fun",
+      "quit_on_error": false,
+      "run_order_number": 11,
+      "runlist": [
+        "recipe[contrail::prectcontroller]",
+        "recipe[contrail::yumrepo]",
+        "role[contrail-database]",
+        "role[contrail-config]",
+        "role[contrail-control]",
+        "role[contrail-webui]",
+        "role[contrail-analytics]",
+        "recipe[contrail::postctcontroller]"
+      ]
+    },
+    {
+      "description": "This node was added via the deploy node command",
+      "fqdn": "sunnyvale-cmp1.cloud.svl.ibm.com",
+      "password": "time4fun",
+      "quit_on_error": false,
+      "run_order_number": 12,
+      "runlist": [
+        "recipe[contrail::precompute]",
+        "role[ibm-os-compute-node-kvm]",
+        "role[ibm-os-prs-compute-node]",
+        "recipe[contrail::yum-compute-repo]",
+        "role[contrail-compute]",
+        "recipe[contrail::postcompute]"
+      ]
+    }
+  ],
+  "secret_file": "/installer/testha/testha_secret"
+}
