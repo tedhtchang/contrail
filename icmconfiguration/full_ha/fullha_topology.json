@@ -1,7 +1,7 @@
 {
-  "name": "testha",
+  "name": "fullha",
   "description": "Controller + N Compute Topology - x86 KVM",
-  "environment": "testha",
+  "environment": "fullha",
   "run_sequentially": false,
   "orchestration": "ha_controller_n_compute",
   "nodes": [
@@ -108,5 +108,5 @@
       ]
     }
   ],
-  "secret_file": "/installer/testha/testha_secret"
+  "secret_file": "/installer/fullha/fullha_secret"
 }

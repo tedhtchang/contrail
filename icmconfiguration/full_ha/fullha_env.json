@@ -1,5 +1,5 @@
 {
-  "name": "testha",
+  "name": "fullha",
   "description": "Example environment for the IBM OpenStack HA controller + n compute topology",
   "cookbook_versions": {
     "apache2": "~> 3.1.0",
@@ -460,10 +460,10 @@
       "databag_type": "encrypted",
       "secret": {
         "key_path": "/etc/chef/encrypted_data_bag_secret",
-        "service_passwords_data_bag": "testha_service_passwords",
-        "db_passwords_data_bag": "testha_db_passwords",
-        "user_passwords_data_bag": "testha_user_passwords",
-        "secrets_data_bag": "testha_secrets"
+        "service_passwords_data_bag": "fullha_service_passwords",
+        "db_passwords_data_bag": "fullha_db_passwords",
+        "user_passwords_data_bag": "fullha_user_passwords",
+        "secrets_data_bag": "fullha_secrets"
       },
       "db": {
         "service_type": "db2",
