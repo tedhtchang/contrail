@@ -9,7 +9,7 @@
 # =================================================================
 #
 # Cookbook Name:: contrail
-# Recipe:: yum-compute-repo.rb
+# Recipe:: yum-os-controller-repo
 #
 
 include_recipe 'yum'
