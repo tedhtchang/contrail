@@ -19,6 +19,7 @@ uri = URI("#{Chef::Config[:chef_server_url]}")
 chef_server_ip = uri.host
 default['contrail']['yum_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/contrail/"
 default['contrail']['yum_compute_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/contrail-compute/"
+default['contrail']['yum_os_controller_repo_url'] = "https://#{chef_server_ip}:14443/yum-repo/contrail-os-controller/"
 default['contrail']['keystone_ip'] = "#{node['openstack']['endpoints']['host']}"
 default['contrail']['os_controller_ip'] = "#{node['openstack']['endpoints']['host']}" 
 default['contrail']['ct_controller_interface'] = node['network']['default_interface'] 
