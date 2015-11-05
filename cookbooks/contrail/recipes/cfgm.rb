@@ -86,6 +86,14 @@ if node['contrail']['rabbitmq'] then
     end
 end
 
+template "/var/lib/rabbitmq/.erlang.cookie" do
+    source "rabbitmq.cookie.erb"
+    owner 'rabbitmq'
+    group 'rabbitmq'
+    mode 00400
+    notifies :restart, "service[rabbitmq-server]", :immediately
+end
+
 template "/etc/ifmap-server/ifmap.properties" do
     source "ifmap.properties.erb"
     mode 00644
