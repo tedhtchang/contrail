@@ -19,7 +19,7 @@ base_contrail_url = node['contrail']['yum_compute_repo_url']
 yum_repository 'contrail_install' do
         description 'Contrail_compute__repo'
         baseurl base_contrail_url
-        repositoryid 'Ccontrail_compute_repo'
+        repositoryid 'Contrail_compute_repo'
         gpgcheck false
         sslverify false
         action :create
