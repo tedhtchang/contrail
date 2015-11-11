@@ -11,10 +11,7 @@
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-ha-controller-node]",
-        "recipe[contrail::yum-os-controller-repo]",
-        "recipe[contrail::neutron]",
-        "recipe[contrail::postoscontroller]"
+        "role[contrail-icm-os-controller]"
       ]
     },
     {
@@ -23,10 +20,7 @@
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-ha-controller-node]",
-        "recipe[contrail::yum-os-controller-repo]",
-        "recipe[contrail::neutron]",
-        "recipe[contrail::postoscontroller]"
+        "role[contrail-icm-os-controller]"
       ]
     },
     {
@@ -35,10 +29,7 @@
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-ha-controller-node]",
-        "recipe[contrail::yum-os-controller-repo]",
-        "recipe[contrail::neutron]",
-        "recipe[contrail::postoscontroller]"
+        "role[contrail-icm-os-controller]"
       ]
     },
     {
@@ -48,14 +39,7 @@
       "quit_on_error": false,
       "run_order_number": 11,
       "runlist": [
-        "recipe[contrail::prectcontroller]",
-        "recipe[contrail::yumrepo]",
-        "role[contrail-database]",
-        "role[contrail-config]",
-        "role[contrail-control]",
-        "role[contrail-webui]",
-        "role[contrail-analytics]",
-        "recipe[contrail::postctcontroller]"
+        "role[contrail-icm-ct-controller]"
       ]
     },
     {
@@ -65,14 +49,7 @@
       "quit_on_error": false,
       "run_order_number": 11,
       "runlist": [
-        "recipe[contrail::prectcontroller]",
-        "recipe[contrail::yumrepo]",
-        "role[contrail-database]",
-        "role[contrail-config]",
-        "role[contrail-control]",
-        "role[contrail-webui]",
-        "role[contrail-analytics]",
-        "recipe[contrail::postctcontroller]"
+        "role[contrail-icm-ct-controller]"
       ]
     },
     {
@@ -82,14 +59,7 @@
       "quit_on_error": false,
       "run_order_number": 11,
       "runlist": [
-        "recipe[contrail::prectcontroller]",
-        "recipe[contrail::yumrepo]",
-        "role[contrail-database]",
-        "role[contrail-config]",
-        "role[contrail-control]",
-        "role[contrail-webui]",
-        "role[contrail-analytics]",
-        "recipe[contrail::postctcontroller]"
+        "role[contrail-icm-ct-controller]"
       ]
     },
     {

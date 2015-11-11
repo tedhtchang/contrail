@@ -8,9 +8,9 @@
   },
   "chef_type": "role",
   "run_list": [
-    "role[contrail-icm-common]",
+    "recipe[contrail::prectcontroller]",
+    "recipe[contrail::yumrepo]",
     "role[contrail-database]",
-    "recipe[contrail::haproxy]",
     "role[contrail-config]",
     "role[contrail-control]",
     "role[contrail-webui]",
