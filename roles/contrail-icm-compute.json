@@ -10,7 +10,6 @@
   "run_list": [
     "recipe[contrail::precompute]",
     "role[ibm-os-compute-node-kvm]",
-    "role[ibm-os-prs-compute-node]",
     "recipe[contrail::yum-compute-repo]",
     "role[contrail-compute]",
     "recipe[contrail::postcompute]"
