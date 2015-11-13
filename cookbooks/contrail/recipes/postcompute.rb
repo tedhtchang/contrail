@@ -36,7 +36,8 @@ bash "update-nova" do
 end
 
 search_line="compute_monitors=ComputeDriverCPUMonitor"
-insert_line1="libvirt_vif_driver = nova_contrail_vif.contrailvif.VRouterVIFDriver"
+#insert_line1="libvirt_vif_driver = nova_contrail_vif.contrailvif.VRouterVIFDriver"
+insert_line1="network_api_class = nova_contrail_vif.contrailvif.ContrailNetworkAPI"
 insert_line2="neutron_connection_host = #{node['contrail']['network_ip']}"
 
 ruby_block "insert-nova" do
