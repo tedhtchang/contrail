@@ -14,10 +14,8 @@
       "run_order_number": 4,
       "runlist": [
         "role[ibm-os-single-controller-node]",
-        "role[ibm-os-prs-ego-master]",
-        "role[ibm-os-prs-controller-node]",
         "role[ibm-sce-node]",
-        "role[contrail-icm-common]",
+        "recipe[contrail::yum-os-controller-repo]",
         "recipe[contrail::neutron]",
         "recipe[contrail::postoscontroller]"
       ]
@@ -30,9 +28,8 @@
       "run_order_number": 11,
       "runlist": [
         "recipe[contrail::prectcontroller]",
-        "role[contrail-icm-common]",
+        "recipe[contrail::yumrepo]",
         "role[contrail-database]",
-        "recipe[contrail::haproxy]",
         "role[contrail-config]",
         "role[contrail-control]",
         "role[contrail-webui]",
@@ -48,12 +45,7 @@
       "quit_on_error": false,
       "run_order_number": 12,
       "runlist": [
-        "recipe[contrail::precompute]",
-        "role[ibm-os-compute-node-kvm]",
-        "role[ibm-os-prs-compute-node]",
-        "recipe[contrail::yum-compute-repo]", 
-        "role[contrail-compute]",
-        "recipe[contrail::postcompute]"
+        "role[contrail-icm-compute]"
       ]
     }
   ],

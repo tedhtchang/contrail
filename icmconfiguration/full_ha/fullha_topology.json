@@ -11,7 +11,11 @@
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[contrail-icm-os-controller]"
+        "role[ibm-os-ha-controller-node]",
+        "role[ibm-sce-node]",
+        "recipe[contrail::yum-os-controller-repo]",
+        "recipe[contrail::neutron]",
+        "recipe[contrail::postoscontroller]"
       ]
     },
     {
@@ -20,7 +24,11 @@
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[contrail-icm-os-controller]"
+        "role[ibm-os-ha-controller-node]",
+        "role[ibm-sce-node]",
+        "recipe[contrail::yum-os-controller-repo]",
+        "recipe[contrail::neutron]",
+        "recipe[contrail::postoscontroller]"
       ]
     },
     {
@@ -29,7 +37,11 @@
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[contrail-icm-os-controller]"
+        "role[ibm-os-ha-controller-node]",
+        "role[ibm-sce-node]",
+        "recipe[contrail::yum-os-controller-repo]",
+        "recipe[contrail::neutron]",
+        "recipe[contrail::postoscontroller]"
       ]
     },
     {
@@ -39,7 +51,14 @@
       "quit_on_error": false,
       "run_order_number": 11,
       "runlist": [
-        "role[contrail-icm-ct-controller]"
+        "recipe[contrail::prectcontroller]",
+        "recipe[contrail::yumrepo]",
+        "role[contrail-database]",
+        "role[contrail-config]",
+        "role[contrail-control]",
+        "role[contrail-webui]",
+        "role[contrail-analytics]",
+        "recipe[contrail::postctcontroller]"
       ]
     },
     {
@@ -49,7 +68,14 @@
       "quit_on_error": false,
       "run_order_number": 11,
       "runlist": [
-        "role[contrail-icm-ct-controller]"
+        "recipe[contrail::prectcontroller]",
+        "recipe[contrail::yumrepo]",
+        "role[contrail-database]",
+        "role[contrail-config]",
+        "role[contrail-control]",
+        "role[contrail-webui]",
+        "role[contrail-analytics]",
+        "recipe[contrail::postctcontroller]"
       ]
     },
     {
@@ -59,7 +85,14 @@
       "quit_on_error": false,
       "run_order_number": 11,
       "runlist": [
-        "role[contrail-icm-ct-controller]"
+        "recipe[contrail::prectcontroller]",
+        "recipe[contrail::yumrepo]",
+        "role[contrail-database]",
+        "role[contrail-config]",
+        "role[contrail-control]",
+        "role[contrail-webui]",
+        "role[contrail-analytics]",
+        "recipe[contrail::postctcontroller]"
       ]
     },
     {
@@ -73,5 +106,5 @@
       ]
     }
   ],
-  "secret_file": "/installer/fullha/fullha_secret"
+  "secret_file": "/installer/contrail/fullha_secret"
 }

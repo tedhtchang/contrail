@@ -8,7 +8,8 @@
   },
   "chef_type": "role",
   "run_list": [
-    "role[ibm-os-ha-controller-node]",
+    "role[ibm-os-single-controller-node]",
+    "role[ibm-sce-node]",
     "recipe[contrail::yum-os-controller-repo]",
     "recipe[contrail::neutron]",
     "recipe[contrail::postoscontroller]"
