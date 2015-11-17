@@ -56,3 +56,9 @@ end
         action [:enable, :start]
     end
 end
+
+%w{ supervisor-database }.each do |pkg|
+    service pkg do
+        action [:restart]
+    end
+end
