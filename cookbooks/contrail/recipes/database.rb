@@ -22,9 +22,10 @@ bash "remove-initial-cassandra-data-dir" do
         TIMESTAMP=`date +%Y%m%d-%H%M%S`
         mv /var/lib/cassandra /var/lib/cassandra.$TIMESTAMP
         mkdir /var/lib/cassandra
-        chown cassandra:cassandra /var/lib/cassandra
-#        mkdir -p /var/lib/cassandra/data/ContrailAnalytics
-        mkdir /var/crashes
+        chown -R cassandra:cassandra /var/lib/cassandra
+        mkdir -p /var/lib/cassandra/data/ContrailAnalytics
+        chown -R cassandra:cassandra /var/lib/cassandra/data/ContrailAnalytics
+#        mkdir /var/crashes
     EOC
 end
 
@@ -64,3 +65,10 @@ end
     end
 end
 
+bash "restart_cassandra" do
+    user "root"
+    code <<-EOH
+        chown -R cassandra:cassandra /var/lib/cassandra
+        service cassandra restart
+    EOH
+end
