@@ -1,0 +1,1121 @@
+{
+  "name": "test",
+  "description": "Example environment for the IBM OpenStack single controller + n compute topology",
+  "cookbook_versions": {
+    "apache2": "~> 3.1.0",
+    "apt": "~> 2.6.1",
+    "aws": "~> 1.0.0",
+    "build-essential": "~> 1.4.2",
+    "ceph": "~> 0.8.0",
+    "chef_handler": "~> 1.1.5",
+    "chef-sugar": "~> 2.5.0",
+    "cpu": "~> 0.2.0",
+    "database": "~> 4.0.2",
+    "erlang": "~> 1.5.0",
+    "galera": "~> 0.4.1",
+    "haproxy": "~> 1.6.6",
+    "homebrew": "~> 1.5.4",
+    "htpasswd": "~> 0.2.4",
+    "iptables": "~> 0.14.1",
+    "logrotate": "~> 1.5.0",
+    "mariadb": "~> 0.3.1",
+    "memcached": "~> 1.7.2",
+    "mysql": "~> 6.0.13",
+    "mysql2_chef_gem": "~> 1.0.1",
+    "ntp": "~> 1.5.4",
+    "openssl": "~> 4.0.0",
+    "pacman": "~> 1.0.4",
+    "postgresql": "~> 3.4.18",
+    "python": "~> 1.4.6",
+    "rabbitmq": "~> 4.1",
+    "rbac": "~> 1.0.2",
+    "rsyslog": "~> 2.0.0",
+    "runit": "~> 1.5.10",
+    "selinux": "~> 0.9.0",
+    "smf": "~> 2.2.6",
+    "windows": "~> 1.30.0",
+    "xfs": "~> 1.1.0",
+    "yum": "~> 3.5.4",
+    "yum-epel": "~> 0.6.0",
+    "yum-erlang_solutions": "~> 0.1.4",
+    "yum-mysql-community": "~> 0.1.12",
+    "openstack-bare-metal": "~> 11.0.0",
+    "openstack-block-storage": "~> 11.1.0",
+    "openstack-common": "~> 11.5.1",
+    "openstack-compute": "~> 11.1.0",
+    "openstack-dashboard": "~> 11.0.0",
+    "openstack-identity": "~> 11.1.0",
+    "openstack-image": "~> 11.0.0",
+    "openstack-network": "~> 11.0.0",
+    "openstack-ops-database": "~> 11.0.0",
+    "openstack-ops-messaging": "~> 11.1.0",
+    "openstack-orchestration": "~> 11.0.0",
+    "openstack-telemetry": "~> 11.0.0",
+    "db2": "~> 2.0.3",
+    "ibm-cls": "~> 1.0.1",
+    "ibm-openstack-apache-proxy": "~> 11.1.2",
+    "ibm-openstack-apt-server": "~> 11.0.0",
+    "ibm-openstack-common": "~> 11.3.0",
+    "ibm-openstack-dr": "~> 11.0.3",
+    "ibm-openstack-ha": "~> 11.1.0",
+    "ibm-openstack-iptables": "~> 11.0.6",
+    "ibm-openstack-migration": "~> 11.0.31",
+    "ibm-openstack-network": "~> 11.1.0",
+    "ibm-openstack-perf-tuning": "~> 11.0.1",
+    "ibm-openstack-powervc-driver": "~> 11.0.2",
+    "ibm-openstack-prs": "~> 11.1.0",
+    "ibm-openstack-roles": "~> 11.0.4",
+    "ibm-openstack-simple-token": "~> 11.0.1",
+    "ibm-openstack-vmware-driver": "~> 11.0.5",
+    "ibm-openstack-yum-server": "~> 11.0.0",
+    "ibm-openstack-zvm-driver": "~> 11.0.6",
+    "ibm-sce": "~> 11.0.6",
+    "ibm-spectrum-scale": "11.0.12",
+    "pacemaker": "~> 1.1.4",
+    "qpid": "~> 1.0.2"
+  },
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "default_attributes": {
+    "contrail": {
+      "ha": false,
+      "haproxy": true,
+      "manage_nova_compute": false,
+      "manage_neutron": false,
+      "multi_tenancy": false,
+      "router_asn": "64512",
+      "network_pfxlen": "26",
+      "network_id": "",
+      "compute": {
+        "dns3": "9.0.0.3",
+        "dns2": "9.0.0.2",
+        "dns1": "9.30.140.13",
+        "netmask": "255.255.255.192",
+        "interface": "eno16777728",
+        "cidr": "9.30.137.0/26",
+        "gateway": "9.30.137.1",
+        "domain": "cloud.svl.ibm.com"
+      }
+    },
+    "selinux": {
+      "state": "nothing"
+    },
+    "ibm-openstack": {
+      "identity": {
+        "ldap": {
+          "enable": false,
+          "domain_name": "ldap",
+          "url": "ldap://localhost",
+          "suffix": "ou=users,o=your_company.com",
+          "user": null,
+          "password": null,
+          "use_dumb_member": false,
+          "dumb_member": "cn=dumb,dc=nonexistent",
+          "alias_dereferencing": "always",
+          "chase_referrals": true,
+          "query_scope": "sub",
+          "use_tls": true,
+          "tls_cacertfile": null,
+          "tls_cacertdir": null,
+          "tls_req_cert": "never",
+          "user_tree_dn": "ou=users,o=your_company.com",
+          "user_filter": null,
+          "user_objectclass": "Person",
+          "user_id_attribute": "preferredIdentity",
+          "user_name_attribute": "preferredIdentity",
+          "user_mail_attribute": "mail",
+          "user_pass_attribute": null,
+          "user_enabled_attribute": "passwordIsExpired",
+          "user_enabled_mask": null,
+          "user_enabled_default": null,
+          "user_enabled_invert": true,
+          "user_attribute_ignore": null,
+          "user_enabled_emulation": false,
+          "user_enabled_emulation_dn": null,
+          "group_tree_dn": "ou=users,o=your_company.com",
+          "group_filter": "(cn=doesntmatch)",
+          "group_objectclass": "groupOfNames",
+          "group_id_attribute": "cn",
+          "group_name_attribute": "ou",
+          "group_member_attribute": "member",
+          "group_desc_attribute": "description",
+          "use_pool": true,
+          "use_auth_pool": true,
+          "admin_user": null,
+          "admin_pass": null,
+          "project": null
+        }
+      },
+      "iptables": {
+        "status": "enabled",
+        "use_default_rules": true,
+        "include_ssh_default_rule": true,
+        "custom_rules": null
+      },
+      "zvm-driver": {
+        "hosts": [
+          "host1"
+        ],
+        "host1": {
+          "xcat": {
+            "server": "0.0.0.0",
+            "username": "",
+            "zhcp_nodename": "",
+            "master": "",
+            "mgt_ip": "0.0.0.0",
+            "mgt_mask": "255.255.255.0",
+            "connection_timeout": "3600",
+            "image_clean_period": "30",
+            "free_space_threshold": "50",
+            "timeout": "300"
+          },
+          "config": {
+            "ram_allocation_ratio": "3"
+          },
+          "image": {
+            "tmp_path": "/var/lib/nova/images",
+            "cache_manager_interval": "86400"
+          },
+          "rpc_response_timeout": "180",
+          "reachable_timeout": "600",
+          "polling_interval": "5",
+          "config_drive": {
+            "format": "tgz",
+            "inject_password": "False"
+          },
+          "ml2": {
+            "type_drivers": "local,flat,vlan,gre,vxlan",
+            "tenant_network_types": "vlan",
+            "mechanism_drivers": "zvm",
+            "flat_networks": "default",
+            "network_vlan_ranges": "default:1:4094"
+          },
+          "diskpool": "",
+          "diskpool_type": "",
+          "zvm_host": "",
+          "host": "",
+          "user_profile": "",
+          "scsi_pool": "",
+          "fcp_list": "",
+          "zhcp_fcp_list": "",
+          "external_vswitch_mappings": ""
+        }
+      },
+      "vmware-driver": {
+        "compute": {
+          "services": [
+            "compute0"
+          ],
+          "compute0": {
+            "compute_type": "cluster",
+            "cluster_name": [
+              "cluster01"
+            ],
+            "datastore_regex": null,
+            "datastore_cluster_name": null,
+            "random_datastore": true,
+            "use_sdrs": false,
+            "vnc_port": 5900,
+            "vnc_port_total": 10000,
+            "use_linked_clone": true,
+            "vlan_interface": "vmnic0",
+            "maximum_objects": 100,
+            "integration_bridge": "br-100",
+            "use_displayname_uuid_for_vmname": true,
+            "enable_vm_hot_resize": true,
+            "strict_resize_memory": true,
+            "snapshot_image_format": "vmdk",
+            "vmwaretool_activation_enabled": true,
+            "domain_name": "icm-domainname",
+            "dns_suffix": "icm.cn.ibm.com",
+            "workgroup": "WORKGROUP",
+            "timezone": 90,
+            "organization_name": "ibm.com",
+            "product_key": "",
+            "user_name": "ibm"
+          }
+        }
+      },
+      "network": {
+        "ip_movement": {
+          "enable": true,
+          "wait_before_ping": 50,
+          "timeout": 180
+        }
+      },
+      "perf-tuning": {
+        "workers": {
+          "calculate": true,
+          "min_workers": 2,
+          "max_workers": 4,
+          "num_cpus_ratio": 2
+        }
+      },
+      "fips_compliance": {
+        "enabled": false
+      }
+    },
+    "memcached": {
+      "maxconn": 1024,
+      "memory": 64,
+      "max_object_size": "1m",
+      "listen": "127.0.0.1"
+    },
+    "openstack": {
+      "endpoints": {
+        "network-openvswitch": {
+
+        },
+        "compute-vnc-bind": {
+
+        },
+        "compute-vnc-proxy-bind": {
+
+        },
+        "compute-serial-console-bind": {
+
+        }
+      },
+      "compute": {
+        "debug": "False",
+        "verbose": "True",
+        "state_path": "/var/lib/nova",
+        "driver": "libvirt.LibvirtDriver",
+        "instance_name_template": "instance-%08x",
+        "libvirt": {
+          "virt_type": "kvm",
+          "live_migration_flag": "VIR_MIGRATE_UNDEFINE_SOURCE,VIR_MIGRATE_PEER2PEER,VIR_MIGRATE_LIVE"
+        }
+      },
+      "network": {
+        "verbose": "False",
+        "debug": "False",
+        "openvswitch": {
+          "bridge_mappings": "",
+          "bridge_mapping_interface": ""
+        }
+      },
+      "block-storage": {
+        "debug": "False",
+        "verbose": "True",
+        "volume": {
+          "create_volume_group": false,
+          "volume_group_size": 40,
+          "iscsi_ip_address": "9.30.137.31"
+        }
+      },
+      "telemetry": {
+        "debug": "False",
+        "verbose": "True"
+      }
+    },
+    "ibm-cls": {
+      "log_file": {
+        "poll_interval": 10,
+        "logrotate": {
+          "file_size": "10M",
+          "rotate_count": 10
+        }
+      },
+      "iptables": {
+        "enabled": true
+      },
+      "elasticsearch": {
+        "server_ip": "127.0.0.1",
+        "server_port": "9200",
+        "curator": {
+          "days_count": 3
+        }
+      },
+      "logstash": {
+        "server_ip": "127.0.0.1",
+        "install_node_type": "other"
+      },
+      "kibana": {
+        "http_port": "1080",
+        "https_port": "10443"
+      },
+      "rsyslog": {
+        "port": "1514",
+        "service": {
+          "poll_interval": "5"
+        }
+      }
+    }
+  },
+  "override_attributes": {
+    "ntp": {
+      "servers": [
+        "0.pool.ntp.org",
+        "1.pool.ntp.org",
+        "2.pool.ntp.org",
+        "3.pool.ntp.org"
+      ],
+      "apparmor_enabled": false
+    },
+    "yum": {
+      "mysql55-community": {
+        "enabled": false,
+        "baseurl": "CHNANGEME",
+        "gpgcheck": false
+      },
+      "mysql56-community": {
+        "enabled": false,
+        "baseurl": "CHNANGEME",
+        "gpgcheck": false
+      },
+      "mysql57-community": {
+        "enabled": false,
+        "baseurl": "CHNANGEME",
+        "gpgcheck": false
+      }
+    },
+    "ibm-spectrum-scale": {
+      "package": {
+        "file": null
+      },
+      "filesystem": {
+        "metadata_replicas": 3,
+        "replicas": 3,
+        "mount_point": "/mnt/gpfs0"
+      },
+      "cluster_name": "gpfs-cluster",
+      "installer": {
+        "host": {
+          "ipaddr": null
+        }
+      },
+      "admin": {
+        "node": {
+          "hostname": null
+        }
+      },
+      "client": {
+        "nodes_list": [
+
+        ]
+      },
+      "quorum": {
+        "nodes_list": [
+
+        ]
+      },
+      "manager": {
+        "nodes_list": [
+
+        ]
+      },
+      "nsd": {
+        "nodes_list": [
+
+        ]
+      },
+      "object": {
+        "nodes": [
+
+        ],
+        "export_ip_list": [
+
+        ],
+        "load_balance_ip": null
+      },
+      "add_node_name": null,
+      "remove": {
+        "nodes_list": [
+
+        ]
+      }
+    },
+    "ibm-openstack-yum-server": {
+      "yumpriorities_enabled": false
+    },
+    "ibm-openstack": {
+      "remote_files": {
+        "mysql2_gem_download_enabled": true,
+        "mysql2_gem_filename": "mysql2-0.3.17.gem"
+      },
+      "password-obfuscate": true,
+      "prs": {
+        "ego": {
+          "master_list": [
+
+          ]
+        }
+      },
+      "powervc-driver": {
+        "powervc": {
+          "admin_user": "root",
+          "host": "powervc_host",
+          "rabbitmq": {
+            "username": "powervcdriver_mq",
+            "ssl_keyfile_source": "/root/powervcmq_ssl/key.pem",
+            "ssl_certfile_source": "/root/powervcmq_ssl/cert.pem",
+            "ssl_ca_certs_source": "/root/powervcmq_ssl/cacert.pem"
+          },
+          "mq": {
+            "service_type": "rabbitmq"
+          },
+          "ssh": {
+            "access": true
+          },
+          "scg": [
+            "Any host, all VIOS"
+          ]
+        },
+        "db": {
+          "max_pool_size": 10,
+          "max_overflow": 20
+        },
+        "db_create": false,
+        "http": {
+          "insecure": true,
+          "cacert": null
+        }
+      },
+      "vmware-driver": {
+        "vcenter_connection": {
+          "host_ip": "8.8.8.8",
+          "host_username": "admin",
+          "secret_name": "openstack_vmware_secret_name",
+          "http_pool_size": 50,
+          "wsdl_location": null,
+          "api_retry_count": 10,
+          "task_poll_interval": 5
+        },
+        "compute": {
+          "services": [
+            "compute0"
+          ],
+          "compute0": {
+            "compute_type": "cluster",
+            "cluster_name": [
+              "cluster01"
+            ],
+            "datastore_regex": null,
+            "datastore_cluster_name": null,
+            "random_datastore": true,
+            "use_sdrs": false,
+            "vnc_port": 5900,
+            "vnc_port_total": 10000,
+            "use_linked_clone": true,
+            "vlan_interface": "vmnic0",
+            "maximum_objects": 100,
+            "integration_bridge": "br-100",
+            "use_displayname_uuid_for_vmname": true,
+            "enable_vm_hot_resize": true,
+            "strict_resize_memory": true,
+            "snapshot_image_format": "vmdk",
+            "vmwaretool_activation_enabled": true,
+            "domain_name": "icm-domainname",
+            "dns_suffix": "icm.cn.ibm.com",
+            "workgroup": "WORKGROUP",
+            "timezone": 90,
+            "organization_name": "ibm.com",
+            "product_key": "",
+            "user_name": "ibm"
+          }
+        },
+        "discovery": {
+          "log": {
+            "verbose": true
+          },
+          "auth": {
+            "http_insecure": true,
+            "connection_cacert": ""
+          },
+          "common": {
+            "staging_project_name": "admin",
+            "staging_user": "admin",
+            "instance_prefix": "Discovered VM ",
+            "flavor_prefix": "Flavor for ",
+            "instance_sync_interval": "20",
+            "template_sync_interval": 300,
+            "portgroup_sync_interval": 300,
+            "full_instance_sync_frequency": 30,
+            "image_periodic_sync_interval_in_seconds": 300,
+            "image_sync_retry_interval_time_in_seconds": 60,
+            "image_limit": 500,
+            "longrun_loop_interval": 7,
+            "longrun_initial_delay": 10,
+            "vmware_default_image_name": "VMware Unknown Image",
+            "vm_ignore_regex": "",
+            "vm_ignore_list": "",
+            "allow_instance_deletion": true,
+            "allow_template_deletion": true,
+            "property_collector_max": 4000,
+            "clusters": [
+
+            ],
+            "host_resource_pools": [
+
+            ],
+            "cluster_resource_pools": [
+
+            ]
+          },
+          "network": {
+            "physical_network_mappings": "physnet1:vSwitch0",
+            "port_group_filter_list": [
+
+            ],
+            "tenant_name": "admin",
+            "allow_neutron_deletion": false
+          }
+        },
+        "network": {
+          "use_dvs": true,
+          "network_maps": "physnet2:dvSwitch"
+        },
+        "block-storage": {
+          "driver": "cinder.volume.drivers.vmware.vmdk.VMwareVcVmdkDriver",
+          "vmware_volume_folder": "cinder-volumes",
+          "vmware_image_transfer_timeout_secs": 7200,
+          "vmware_max_objects_retrieval": 100
+        },
+        "image": {
+          "default_store": "file",
+          "stores": [
+            "file",
+            "http"
+          ],
+          "show_image_direct_url": true,
+          "vmware_datacenter_path": "",
+          "vmware_datastore_name": "",
+          "vmware_store_image_dir": "/openstack_glance",
+          "vmware_api_insecure": false
+        }
+      },
+      "upgrade": {
+        "inplace": false
+      },
+      "apache-proxy": {
+        "enabled": false,
+        "certfile": "/etc/certs/cert.pem",
+        "certkeyfile": "/etc/certs/certkey.pem"
+      },
+      "network": {
+        "l3": {
+          "enable": true
+        }
+      }
+    },
+    "openstack": {
+      "release": "kilo",
+      "region": "RegionOne",
+      "api": {
+        "auth": {
+          "version": "v3.0"
+        }
+      },
+      "auth": {
+        "strategy": "uuid"
+      },
+      "yum": {
+        "rdo_enabled": false
+      },
+      "use_databags": true,
+      "databag_type": "encrypted",
+      "secret": {
+        "key_path": "/etc/chef/encrypted_data_bag_secret",
+        "service_passwords_data_bag": "test_service_passwords",
+        "db_passwords_data_bag": "test_db_passwords",
+        "user_passwords_data_bag": "test_user_passwords",
+        "secrets_data_bag": "test_secrets"
+      },
+      "db": {
+        "service_type": "db2",
+        "server_role": "ibm-os-database-server-node",
+        "telemetry": {
+          "db_name": "ceilodb2",
+          "username": "ceilodb2",
+          "port": "50000",
+          "nosql": {
+            "used": true
+          },
+          "options": {
+            "nosql": "?socketTimeoutMS=20000"
+          }
+        }
+      },
+      "memcached_servers": [
+        "localhost:11211"
+      ],
+      "mq": {
+        "service_type": "rabbitmq",
+        "server_role": "ibm-os-messaging-server-node",
+        "durable_queues": true,
+        "user": "rabbitclient",
+        "image": {
+          "notification_topic": "notifications"
+        },
+        "qpid": {
+          "protocol": "ssl"
+        },
+        "rabbitmq": {
+          "use_ssl": true,
+          "kombu_ssl_ca_certs": "/etc/pki/tls/icm/rabbitmq/cacerts.pem"
+        }
+      },
+      "endpoints": {
+        "host": "9.30.137.31",
+        "identity-admin": {
+          "port": "35357"
+        },
+        "identity-internal": {
+          "port": "5000"
+        },
+        "identity-api": {
+          "port": "5000"
+        },
+        "network-api": {
+          "port": "9696"
+        },
+        "image-api": {
+          "port": "9292"
+        },
+        "orchestration-api": {
+          "port": "8004"
+        },
+        "orchestration-api-cfn": {
+          "port": "8000"
+        },
+        "orchestration-api-cloudwatch": {
+          "port": "8003"
+        },
+        "telemetry-api": {
+          "port": "8777"
+        },
+        "compute-api": {
+          "port": "8774"
+        },
+        "compute-metadata-api": {
+          "port": "8775"
+        },
+        "block-storage-api": {
+          "port": "8776"
+        },
+        "compute-novnc": {
+          "scheme": "http"
+        },
+        "bind-host": "9.30.137.31",
+        "mq": {
+          "host": "9.30.137.31",
+          "port": "5671"
+        },
+        "db": {
+          "host": "9.30.137.31",
+          "port": "50001"
+        }
+      },
+      "identity": {
+        "verbose": "False",
+        "debug": "False",
+        "token": {
+          "hash_algorithm": "md5"
+        },
+        "pipeline": {
+          "public_api": "sizelimit url_normalize build_auth_context token_auth admin_token_auth json_body ec2_extension user_crud_extension public_service",
+          "admin_api": "sizelimit url_normalize build_auth_context token_auth admin_token_auth json_body ec2_extension crud_extension admin_service",
+          "api_v3": "sizelimit url_normalize build_auth_context token_auth admin_token_auth json_body ec2_extension_v3 simple_cert_extension revoke_extension federation_extension service_v3"
+        }
+      },
+      "image": {
+        "control_exchange": "glance",
+        "verbose": "False",
+        "debug": "False",
+        "notification_driver": "messaging",
+        "filesystem_store_datadir": "/var/lib/glance/images",
+        "ssl": {
+          "key_file": "",
+          "cert_file": "",
+          "cert_required": false
+        },
+        "api": {
+          "auth": {
+            "memcached_servers": null,
+            "memcache_security_strategy": null,
+            "memcache_secret_key": null,
+            "hash_algorithms": "md5",
+            "cafile": null,
+            "insecure": false
+          },
+          "block-storage": {
+            "cinder_catalog_info": "volume:cinder:publicURL",
+            "cinder_api_insecure": false,
+            "cinder_ca_certificates_file": null
+          }
+        },
+        "registry": {
+          "auth": {
+            "memcached_servers": null,
+            "memcache_security_strategy": null,
+            "memcache_secret_key": null,
+            "hash_algorithms": "md5",
+            "cafile": null,
+            "insecure": false
+          }
+        },
+        "upload_image": {
+
+        },
+        "upload_images": [
+
+        ]
+      },
+      "network": {
+        "core_plugin": "neutron.plugins.ml2.plugin.Ml2Plugin",
+        "use_namespaces": "True",
+        "enable_vpn": false,
+        "allow_overlapping_ips": "True",
+        "rpc_thread_pool_size": 128,
+        "rpc_conn_pool_size": 60,
+        "rpc_response_timeout": 300,
+        "metadata": {
+          "secret_name": "neutron_metadata_secret"
+        },
+        "service_plugins": [
+          "neutron.services.l3_router.l3_router_plugin.L3RouterPlugin",
+          "neutron.services.firewall.fwaas_plugin.FirewallPlugin",
+          "neutron.services.loadbalancer.plugin.LoadBalancerPlugin"
+        ],
+        "service_provider": [
+          "LOADBALANCER:Haproxy:neutron.services.loadbalancer.drivers.haproxy.plugin_driver.HaproxyOnHostPluginDriver:default"
+        ],
+        "vpn": {
+          "vpn_device_driver": [
+            "neutron_vpnaas.services.vpn.device_drivers.ipsec.OpenSwanDriver"
+          ]
+        },
+        "fwaas": {
+          "enabled": "True",
+          "driver": "neutron_fwaas.services.firewall.drivers.linux.iptables_fwaas.IptablesFwaasDriver"
+        },
+        "lbaas": {
+          "enabled": "True",
+          "device_driver": "neutron_lbaas.services.loadbalancer.drivers.haproxy.namespace_driver.HaproxyNSDriver"
+        },
+        "platform": {
+          "vpn_device_driver_packages": [
+            "openswan"
+          ]
+        },
+        "dhcp": {
+          "ovs_use_veth": "False",
+          "enable_isolated_metadata": "True",
+          "enable_metadata_network": "True"
+        },
+        "l3": {
+          "external_network_bridge": "br-ex",
+          "external_network_bridge_interface": "eno16777728"
+        },
+        "quota": {
+          "driver": "neutron.db.quota_db.DbQuotaDriver",
+          "items": "network,subnet,port",
+          "default": -1,
+          "network": 10,
+          "subnet": 10,
+          "port": 50,
+          "security_group": 10,
+          "security_group_rule": 100,
+          "router": 10,
+          "floatingip": 50
+        },
+        "ml2": {
+          "type_drivers": "local,flat,vlan,gre,vxlan",
+          "tenant_network_types": "vlan",
+          "mechanism_drivers": "openvswitch",
+          "flat_networks": "default",
+          "network_vlan_ranges": "default:1:4094",
+          "tunnel_id_ranges": "1:1000",
+          "vni_ranges": "1001:2000"
+        },
+        "openvswitch": {
+          "tenant_network_type": "vlan",
+          "network_vlan_ranges": "default:1:4094",
+          "enable_tunneling": "True",
+          "tunnel_type": "gre",
+          "tunnel_id_ranges": "1:1000",
+          "veth_mtu": 1500,
+          "tunnel_types": "gre,vxlan"
+        },
+        "api": {
+          "auth": {
+            "memcached_servers": null,
+            "memcache_security_strategy": null,
+            "memcache_secret_key": null,
+            "hash_algorithms": "md5",
+            "cafile": null,
+            "insecure": false
+          }
+        },
+        "nova": {
+          "cafile": null,
+          "insecure": false
+        }
+      },
+      "compute": {
+        "driver": "libvirt.LibvirtDriver",
+        "enabled_apis": "osapi_compute",
+        "rpc_backend": "nova.openstack.common.rpc.impl_kombu",
+        "rpc_thread_pool_size": 2048,
+        "rpc_conn_pool_size": 60,
+        "rpc_response_timeout": 60,
+        "vif_plugging_is_fatal": true,
+        "vif_plugging_timeout": 300,
+        "ssl_only": false,
+        "cert": "",
+        "key": "",
+        "network": {
+          "use_ipv6": true,
+          "service_type": "neutron",
+          "plugins": [
+
+          ],
+          "neutron": {
+            "cafile": null,
+            "service_neutron_metadata_proxy": true,
+            "linuxnet_interface_driver": "nova.network.linux_net.LinuxOVSInterfaceDriver",
+            "dns_server": "",
+            "network_api_class": "nova_contrail_vif.contrailvif.ContrailNetworkAPI",
+            "insecure": false
+          }
+        },
+        "scheduler": {
+          "default_filters": [
+            "RetryFilter",
+            "AvailabilityZoneFilter",
+            "RamFilter",
+            "ComputeFilter",
+            "ComputeCapabilitiesFilter",
+            "ImagePropertiesFilter",
+            "ServerGroupAffinityFilter",
+            "ServerGroupAntiAffinityFilter",
+            "CoreFilter"
+          ],
+          "scheduler_host_manager": "nova.scheduler.host_manager.HostManager"
+        },
+        "config": {
+          "notification_drivers": [
+            "messaging"
+          ],
+          "notification_topics": [
+            "notifications"
+          ],
+          "instance_usage_audit": "True",
+          "instance_usage_audit_period": "hour",
+          "notify_on_state_change": "vm_and_task_state",
+          "allow_resize_to_same_host": true,
+          "cpu_allocation_ratio": 16.0,
+          "ram_allocation_ratio": 1.5,
+          "reserved_host_memory_mb": 512,
+          "force_config_drive": null,
+          "flat_injected": true,
+          "quota_driver": "nova.quota.DbQuotaDriver",
+          "quota_cores": 20,
+          "quota_instances": 10,
+          "quota_ram": 51200,
+          "quota_floating_ips": 10,
+          "quota_fixed_ips": -1,
+          "quota_security_groups": 10,
+          "quota_security_group_rules": 20,
+          "quota_metadata_items": 128,
+          "quota_injected_files": 5,
+          "quota_injected_file_path_length": 255,
+          "quota_injected_file_content_bytes": 10240,
+          "quota_key_pairs": 100,
+          "osapi_max_limit": 3000
+        },
+        "api": {
+          "auth": {
+            "memcached_servers": null,
+            "memcache_security_strategy": null,
+            "memcache_secret_key": null,
+            "hash_algorithms": "md5",
+            "cafile": null,
+            "insecure": false
+          }
+        },
+        "image": {
+          "glance_insecure": false,
+          "ssl": {
+            "ca_file": null,
+            "cert_file": null,
+            "key_file": null
+          }
+        },
+        "block-storage": {
+          "cinder_cafile": null,
+          "cinder_insecure": false
+        }
+      },
+      "dashboard": {
+        "secret_key_path": "/var/lib/openstack-dashboard/.secret_key_store",
+        "wsgi_socket_prefix": "/var/run/wsgi",
+        "ssl_no_verify": "True",
+        "ssl_cacert": null,
+        "hash_algorithm": "md5",
+        "traceenable": "Off"
+      },
+      "block-storage": {
+        "quota_driver": "cinder.quota.DbQuotaDriver",
+        "quota_volumes": "10",
+        "quota_gigabytes": "1000",
+        "quota_snapshots": 10,
+        "no_snapshot_gb_quota": false,
+        "use_default_quota_class": true,
+        "enable_v1_api": "True",
+        "api": {
+          "auth": {
+            "memcached_servers": null,
+            "memcache_security_strategy": null,
+            "memcache_secret_key": null,
+            "hash_algorithms": "md5",
+            "cafile": null,
+            "insecure": false
+          }
+        },
+        "image": {
+          "glance_api_insecure": false,
+          "glance_ca_certificates_file": null
+        }
+      },
+      "object-storage": {
+        "git_builder_ip": "127.0.0.1",
+        "network": {
+          "proxy-bind-ip": "127.0.0.1",
+          "account-bind-ip": "127.0.0.1",
+          "container-bind-ip": "127.0.0.1"
+        }
+      },
+      "orchestration": {
+        "debug": "False",
+        "verbose": "True",
+        "api": {
+          "auth": {
+            "memcached_servers": null,
+            "memcache_security_strategy": null,
+            "memcache_secret_key": null,
+            "hash_algorithms": "md5",
+            "cafile": null,
+            "insecure": false
+          }
+        },
+        "clients": {
+          "ca_file": null,
+          "cert_file": null,
+          "key_file": null,
+          "insecure": false
+        },
+        "heat_stack_user_role": "heat_stack_user",
+        "stack_user_domain_name": "heat",
+        "stack_domain_admin": "heat_stack_admin"
+      },
+      "telemetry": {
+        "api": {
+          "auth": {
+            "memcached_servers": null,
+            "memcache_security_strategy": null,
+            "memcache_secret_key": null,
+            "hash_algorithms": "md5",
+            "cafile": null,
+            "insecure": false
+          }
+        },
+        "service-credentials": {
+          "cafile": null,
+          "insecure": false
+        }
+      }
+    },
+    "ibm-sce": {
+      "db2": {
+        "db_name": "sspdb",
+        "db_username": "sspuser"
+      },
+      "os": {
+        "user": "sce",
+        "group": "sce"
+      },
+      "config": {
+        "prop": {
+          "silent": "1"
+        }
+      },
+      "user": {
+        "input": {
+          "authentication": {
+            "username": "admin",
+            "name": "Administrator"
+          }
+        },
+        "install": {
+          "folder": "/opt/ibm"
+        },
+        "prop": {
+          "folder": "/var/opt/ibm"
+        },
+        "shortcuts": "/root"
+      },
+      "choose": {
+        "license": {
+          "type": {
+            "boolean": "0"
+          }
+        }
+      },
+      "license": {
+        "path": ""
+      },
+      "service": {
+        "enabled": true
+      },
+      "host": {
+        "ipaddress": "9.30.137.31"
+      },
+      "keystone": {
+        "port": "5000",
+        "ssl_enabled": false
+      },
+      "self-service": {
+        "bind_interface": "9.30.137.31",
+        "port": "8080",
+        "firewall": {
+          "enabled": true
+        }
+      },
+      "package": {
+        "fixpack": {
+          "file": null
+        },
+        "update": {
+          "jre": {
+            "file": null
+          }
+        }
+      },
+      "migrate": {
+        "db2": {
+          "target_db_name": "cfs43",
+          "target_user_name": "cfs43"
+        },
+        "secret": {
+          "migrate_passwords_data_bag": "migrate_passwords"
+        }
+      }
+    },
+    "apache": {
+      "mod_ssl": {
+        "cipher_suite": "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4!aNULL!eNULL!LOW!3DES!MD5!EXP!PSK!SRP!DSS:!EDH"
+      },
+      "proxy": {
+        "deny_from": "none",
+        "allow_from": "all"
+      }
+    },
+    "db2": {
+      "ssl": {
+        "enable": true
+      }
+    }
+  }
+}

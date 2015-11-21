@@ -17,6 +17,13 @@ class ::Chef::Recipe
   include ::Contrail
 end
 
+bash "post-restart-cassandra" do
+    user "root"
+    code <<-EOH
+        service cassandra restart
+    EOH
+end
+
 # test code below
 #region_name = node['openstack']['region']
 #openstack_release = node['contrail']['openstack_release']

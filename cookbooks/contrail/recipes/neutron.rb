@@ -13,6 +13,7 @@ end
     python-simplejson
     python-lxml
     contrail-setup
+    contrail-nova-networkapi
 }.each do |pkg|
     package pkg do
         action :upgrade

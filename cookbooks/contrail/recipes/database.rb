@@ -44,11 +44,11 @@ end
     end
 end
 
-%w{ cassandra }.each do |pkg|
-    service pkg do
-        action [:restart]
-    end
-end
+#%w{ cassandra }.each do |pkg|
+#    service pkg do
+#        action [:restart]
+#    end
+#end
 
 #cfgm_vip = get_cfgm_virtual_ipaddr
 cfgm_vip = node['ipaddress']
