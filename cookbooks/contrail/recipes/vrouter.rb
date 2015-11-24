@@ -13,9 +13,9 @@ if node['contrail']['manage_nova_compute'] then
     pkgs = %w( contrail-openstack-vrouter )
 else 
     if not platform?("redhat", "centos", "fedora")
-        pkgs = %w( contrail-nodemgr contrail-nova-networkapi contrail-setup contrail-vrouter contrail-vrouter-init linux-crashdump python-iniparse )
+        pkgs = %w( contrail-nodemgr contrail-nova-vif contrail-setup contrail-vrouter contrail-vrouter-init linux-crashdump python-iniparse )
     else
-        pkgs = %w( abrt contrail-nodemgr contrail-nova-networkapi contrail-setup contrail-vrouter contrail-vrouter-init openstack-utils python-thrift contrail-vrouter-common )
+        pkgs = %w( abrt contrail-nodemgr contrail-nova-vif contrail-setup contrail-vrouter contrail-vrouter-init openstack-utils python-thrift contrail-vrouter-common )
     end
 end
 
