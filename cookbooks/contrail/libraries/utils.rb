@@ -83,11 +83,7 @@ module ::Contrail
   end
 
   def get_cfgm_virtual_ipaddr
-      if node['contrail']['ha']
-        return node['contrail']['cfgm']['vip']
-      else
-        node['ipaddress']
-      end
+      return node['contrail']['cfgm']['vip']
   end
 
   def get_cfgm_virtual_pfxlen

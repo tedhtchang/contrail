@@ -36,16 +36,16 @@ bash "update-nova" do
     not_if "grep -q '# vif_driver=nova.virt.libvirt.vif.LibvirtGenericVIFDriver' /etc/nova/nova.conf"
 end
 
-search_line="# network_api_class=nova.network.neutronv2.api.API"
+search_line="compute_available_monitors=nova.compute.monitors.all_monitors"
 insert_line1="libvirt_vif_driver = nova_contrail_vif.contrailvif.VRouterVIFDriver"
 #insert_line1="network_api_class = nova_contrail_vif.contrailvif.ContrailNetworkAPI"
-insert_line2="neutron_connection_host = #{node['contrail']['network_ip']}"
+#insert_line2="neutron_connection_host = #{node['contrail']['network_ip']}"
 
 ruby_block "insert-nova" do
     block do
 		file = Chef::Util::FileEdit.new('/etc/nova/nova.conf')
 		file.insert_line_after_match(/#{search_line}/, insert_line1)
-		file.insert_line_after_match(/#{insert_line1}/, insert_line2)
+#		file.insert_line_after_match(/#{insert_line1}/, insert_line2)
 		file.write_file
 	end
     not_if "grep -q 'network_api_class = nova_contrail_vif.contrailvif.ContrailNetworkAPI' /etc/nova/nova.conf"
