@@ -85,7 +85,7 @@
       "multi_tenancy": false,
       "router_asn": "64512",
       "network_pfxlen": "26",
-      "network_id": "9.30.137.34",
+      "network_ip": "9.30.137.34",
       "compute": {
         "dns3": "9.0.0.3",
         "dns2": "9.0.0.2",
