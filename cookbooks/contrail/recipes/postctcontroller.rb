@@ -21,6 +21,9 @@ bash "post-restart-cassandra" do
     user "root"
     code <<-EOH
         service cassandra restart
+        service contrail-database restart
+        service supervisor-config restart
+        service supervisor-control restart
     EOH
 end
 
