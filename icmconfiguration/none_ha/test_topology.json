@@ -12,11 +12,7 @@
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-single-controller-node]",
-        "role[ibm-sce-node]",
-        "recipe[contrail::yum-os-controller-repo]",
-        "recipe[contrail::neutron]",
-        "recipe[contrail::postoscontroller]"
+        "role[contrail-icm-os-controller]"
       ]
     },
     {
@@ -40,7 +36,7 @@
       "name": "kvm",
       "description": "This node was added via the deploy node command",
       "fqdn": "gilroy-cmp1.cloud.svl.ibm.com",
-      "password": "NmMeHw8dnHp1dAwElU9ANw==",
+      "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 12,
       "runlist": [
