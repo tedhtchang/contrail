@@ -15,6 +15,10 @@ mkdir -p /installer/contrail
 cd $PACK_WORKSPACE/icmconfiguration/full_ha
 cp *.* /installer/contrail
 
+# copy node types file
+cd $PACK_WORKSPACE/icmconfiguration
+yes | cp node_types.yml /opt/ibm/cmwo/cli/config/node_types.yml
+
 # prepare contrail yum repo
 cd $PACK_WORKSPACE
 cp contrail_icm.tar /opt/ibm/cmwo/yum-repo
