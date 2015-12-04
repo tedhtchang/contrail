@@ -18,7 +18,13 @@ roles-by-compute-node-type:
       [ibm-os-compute-bare-metal]
 
   - kvm: &kvm
-      [ibm-os-compute-node-kvm, contrail-icm-compute]
+      [ibm-os-compute-node-kvm]
+
+  - contrailkvm: &contrailkvm
+      [contrail-icm-compute]
+
+  - kvmibm: &kvmibm
+      [ibm-os-compute-node-kvmibm]
 
   - powerkvm: &powerkvm
       [ibm-os-compute-node-powerkvm]
@@ -48,26 +54,37 @@ roles-by-ordered-node-type:
       [ibm-os-database-server-node]
 
   - ha-controller:
-      [ibm-os-ha-controller-node,contrail-icm-os-controller]
+      [ibm-os-ha-controller-node, contrail-icm-os-controller-ha]
 
   - controller:
       [ibm-os-single-controller-node, ibm-os-single-controller-powervc-driver,
        ibm-os-single-controller-vmware-driver, ibm-os-vmware-controller-node,
-       ibm-os-single-controller-distributed-database-node, contrail-icm-ct-controller]
+       ibm-os-single-controller-distributed-database-node,
+       contrail-icm-os-controller,
+       contrail-icm-os-controller-distributed-database]
+
+  - contrail-controller:
+      [contrail-control]
 
   - block-storage:
       [ibm-os-block-storage-node]
 
   - compute:
-      [*baremetal, *kvm, *powerkvm, *powervc, *zvm, *vmware]
+      [*baremetal, *kvm, *kvmibm, *powerkvm, *powervc, *zvm, *vmware, *contrailkvm]
 
   - sce:
       [ibm-sce-node]
 
+  - cls-server-node:
+      [ibm-cls-server-node]
+
+  - cls-client-node:
+      [ibm-cls-client-deployer-node, ibm-cls-client-compute-node, ibm-cls-client-controller-node]
 
 # List the controller node types
 controller-node-types: [all-in-one-bare-metal, all-in-one, ha-controller, controller]
 
+contrail-controller-node-types: [contrail-controller]
 
 # List the HA controller node types
 ha-controller-node-types: [ha-controller]
@@ -82,4 +99,4 @@ db-only-node-types: [database]
 
 
 # List node types which can be removed from the cluster
-removable-node-types: [kvm, powerkvm]
+removable-node-types: [kvm, kvmibm, powerkvm, contrailkvm]
