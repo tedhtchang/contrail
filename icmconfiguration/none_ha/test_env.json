@@ -57,19 +57,19 @@
     "ibm-openstack-apt-server": "~> 11.0.0",
     "ibm-openstack-common": "~> 11.3.0",
     "ibm-openstack-dr": "~> 11.0.3",
-    "ibm-openstack-ha": "~> 11.1.0",
+    "ibm-openstack-ha": "~> 11.1.1",
     "ibm-openstack-iptables": "~> 11.0.6",
     "ibm-openstack-migration": "~> 11.0.31",
     "ibm-openstack-network": "~> 11.1.0",
     "ibm-openstack-perf-tuning": "~> 11.0.1",
-    "ibm-openstack-powervc-driver": "~> 11.0.2",
+    "ibm-openstack-powervc-driver": "~> 11.0.3",
     "ibm-openstack-prs": "~> 11.1.0",
-    "ibm-openstack-roles": "~> 11.0.4",
+    "ibm-openstack-roles": "~> 11.0.5",
     "ibm-openstack-simple-token": "~> 11.0.1",
     "ibm-openstack-vmware-driver": "~> 11.0.5",
     "ibm-openstack-yum-server": "~> 11.0.0",
-    "ibm-openstack-zvm-driver": "~> 11.0.6",
-    "ibm-sce": "~> 11.0.6",
+    "ibm-openstack-zvm-driver": "~> 11.0.9",
+    "ibm-sce": "~> 11.0.7",
     "ibm-spectrum-scale": "11.0.12",
     "pacemaker": "~> 1.1.4",
     "qpid": "~> 1.0.2"
@@ -84,16 +84,16 @@
       "manage_neutron": false,
       "multi_tenancy": false,
       "router_asn": "64512",
-      "network_pfxlen": "26",
-      "network_ip": "9.30.137.34",
+      "network_ip": "9.30.30.8",
+      "network_pfxlen": "25",
       "compute": {
         "dns3": "9.0.0.3",
         "dns2": "9.0.0.2",
         "dns1": "9.30.140.13",
-        "netmask": "255.255.255.192",
+        "netmask": "255.255.255.128",
         "interface": "eno16777728",
-        "cidr": "9.30.137.0/26",
-        "gateway": "9.30.137.1",
+        "cidr": "9.30.30.0/25",
+        "gateway": "9.30.30.1",
         "domain": "cloud.svl.ibm.com"
       }
     },
@@ -250,9 +250,6 @@
           "max_workers": 4,
           "num_cpus_ratio": 2
         }
-      },
-      "fips_compliance": {
-        "enabled": false
       }
     },
     "memcached": {
@@ -264,16 +261,12 @@
     "openstack": {
       "endpoints": {
         "network-openvswitch": {
-
         },
         "compute-vnc-bind": {
-
         },
         "compute-vnc-proxy-bind": {
-
         },
         "compute-serial-console-bind": {
-
         }
       },
       "compute": {
@@ -301,7 +294,7 @@
         "volume": {
           "create_volume_group": false,
           "volume_group_size": 40,
-          "iscsi_ip_address": "9.30.137.31"
+          "iscsi_ip_address": "9.30.30.6"
         }
       },
       "telemetry": {
@@ -657,7 +650,7 @@
         }
       },
       "endpoints": {
-        "host": "9.30.137.31",
+        "host": "9.30.30.6",
         "identity-admin": {
           "port": "35357"
         },
@@ -697,13 +690,13 @@
         "compute-novnc": {
           "scheme": "http"
         },
-        "bind-host": "9.30.137.31",
+        "bind-host": "9.30.30.6",
         "mq": {
-          "host": "9.30.137.31",
+          "host": "9.30.30.6",
           "port": "5671"
         },
         "db": {
-          "host": "9.30.137.31",
+          "host": "9.30.30.6",
           "port": "50001"
         }
       },
@@ -756,7 +749,6 @@
           }
         },
         "upload_image": {
-
         },
         "upload_images": [
 
@@ -869,11 +861,12 @@
           "use_ipv6": true,
           "service_type": "neutron",
           "plugins": [
-
+            "openvswitch"
           ],
           "neutron": {
             "cafile": null,
             "service_neutron_metadata_proxy": true,
+            "libvirt_vif_driver": "nova.virt.libvirt.vif.LibvirtGenericVIFDriver",
             "linuxnet_interface_driver": "nova.network.linux_net.LinuxOVSInterfaceDriver",
             "dns_server": "",
             "insecure": false
@@ -1069,14 +1062,14 @@
         "enabled": true
       },
       "host": {
-        "ipaddress": "9.30.137.31"
+        "ipaddress": "9.30.30.6"
       },
       "keystone": {
         "port": "5000",
         "ssl_enabled": false
       },
       "self-service": {
-        "bind_interface": "9.30.137.31",
+        "bind_interface": "9.30.30.6",
         "port": "8080",
         "firewall": {
           "enabled": true
@@ -1104,7 +1097,7 @@
     },
     "apache": {
       "mod_ssl": {
-        "cipher_suite": "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4!aNULL!eNULL!LOW!3DES!MD5!EXP!PSK!SRP!DSS:!EDH"
+        "cipher_suite": "ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA:!EDH"
       },
       "proxy": {
         "deny_from": "none",

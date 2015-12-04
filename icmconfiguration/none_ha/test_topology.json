@@ -7,7 +7,8 @@
   "nodes": [
     {
       "name": "controller",
-      "fqdn": "gilroy-ctl1.cloud.svl.ibm.com",
+      "description": "Cloud controller node",
+      "fqdn": "almaden-ctl.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": true,
       "run_order_number": 4,
@@ -17,9 +18,9 @@
     },
     {
       "description": "This node is for Contrail controller",
-      "fqdn": "gilroy-net1.cloud.svl.ibm.com",
+      "fqdn": "almaden-net.cloud.svl.ibm.com",
       "password": "time4fun",
-      "quit_on_error": true,
+      "quit_on_error": false,
       "run_order_number": 11,
       "runlist": [
         "recipe[contrail::prectcontroller]",
@@ -35,7 +36,7 @@
     {
       "name": "kvm",
       "description": "This node was added via the deploy node command",
-      "fqdn": "gilroy-cmp1.cloud.svl.ibm.com",
+      "fqdn": "almaden-cmp.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 12,
@@ -44,5 +45,5 @@
       ]
     }
   ],
-  "secret_file": "/installer/noneha/test_secret"
+  "secret_file": "/installer/test/test_secret"
 }
