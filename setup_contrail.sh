@@ -25,3 +25,9 @@ cp contrail_icm.tar /opt/ibm/cmwo/yum-repo
 cd /opt/ibm/cmwo/yum-repo
 tar xvf contrail_icm.tar
 rm -rf contrail_icm.tar
+
+# copy and apply network.rb fix
+cd $PACK_WORKSPACE/patches
+yes | cp network.rb /opt/ibm/cmwo/chef-repo/cookbooks/openstack-common/libraries/network.rb
+cd /opt/ibm/cmwo/chef-repo/cookbooks/
+knife cookbook upload openstack-common -o ./
