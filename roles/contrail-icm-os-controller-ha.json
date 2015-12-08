@@ -1,5 +1,5 @@
 {
-  "name": "contrail-icm-os-controller-ha",
+  "name": "ibm-os-ha-controller-node",
   "description": "This will deploy a ICM OpenStack controller HA server with Contrail",
   "json_class": "Chef::Role",
   "default_attributes": {
