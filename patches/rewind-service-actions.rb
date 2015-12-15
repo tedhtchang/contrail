@@ -15,19 +15,20 @@ class ::Chef::Recipe # rubocop:disable Documentation
   include ::Openstack
 end
 
+# Do not rewind services of ml2 plugin when use contrail plugin
 if node['recipes'].include?('contrail::neutron')
- tmp_ha_services = node['ibm-openstack']['ha']['pacemaker']['cluster']['managed']['services_to_rewind'].dup
- ml2_agents = ['service[neutron-plugin-openvswitch-agent]',
-               'service[neutron-metadata-agent]',
-               'service[neutron-l3-agent]',
-               'service[neutron-dhcp-agent]']
- ml2_agents.each do |deleted_agent|
-   if tmp_ha_services.include?(deleted_agent)
-     tmp_ha_services.delete(deleted_agent)
-   end
- end
+  tmp_ha_services = node['ibm-openstack']['ha']['pacemaker']['cluster']['managed']['services_to_rewind'].dup
+  ml2_agents = ['service[neutron-plugin-openvswitch-agent]',
+                'service[neutron-metadata-agent]',
+                'service[neutron-l3-agent]',
+                'service[neutron-dhcp-agent]']
+  ml2_agents.each do |deleted_agent|
+    if tmp_ha_services.include?(deleted_agent)
+      tmp_ha_services.delete(deleted_agent)
+    end
+  end
 
- node.override['ibm-openstack']['ha']['pacemaker']['cluster']['managed']['services_to_rewind'] = tmp_ha_services
+  node.override['ibm-openstack']['ha']['pacemaker']['cluster']['managed']['services_to_rewind'] = tmp_ha_services
 end
 
 ha_pacemaker_options = node['ibm-openstack']['ha']['pacemaker']

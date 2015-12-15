@@ -36,25 +36,25 @@ order_constraint_names = %w{order-memcached-httpd order-memcached-consoleauth
                             order-network-ovs-network-metadata order-network-metadata-network-l3
                             order-network-metadata-network-dhcp}
 
-# Delete ovs services for non ml2 plugins
-if node['recipes'].include?('contrail::neutron')
-  ml2_agents = %w{network-ovs-agent network-metadata-agent
-                   network-l3-agent network-dhcp-agent}
- ml2_agents.each do |deleted_agent|
-   resouce_names.delete(deleted_agent)
- end
-
- order_ml2_agents = %w{order-network-ovs-network-metadata order-network-metadata-network-l3
-                         order-network-metadata-network-dhcp}
- order_ml2_agents.each do |deleted_agent|
-   order_constraint_names.delete(deleted_agent)
- end
-end
-
 # Don't create network-l3-agent resource unless l3 is enabled.
 unless node['ibm-openstack']['network']['l3']['enable']
   resouce_names.delete('network-l3-agent')
   order_constraint_names.delete('order-network-metadata-network-l3')
+end
+
+# Delete ovs services for non ml2 plugins
+if node['recipes'].include?('contrail::neutron')
+  ml2_agents = %w{network-ovs-agent network-metadata-agent
+                    network-l3-agent network-dhcp-agent}
+  ml2_agents.each do |deleted_agent|
+    resouce_names.delete(deleted_agent)
+  end
+
+  order_ml2_agents = %w{order-network-ovs-network-metadata order-network-metadata-network-l3
+                          order-network-metadata-network-dhcp}
+  order_ml2_agents.each do |deleted_agent|
+    order_constraint_names.delete(deleted_agent)
+  end
 end
 
 # If PRS HA is enabled, then compute-scheduler should not be cloned
