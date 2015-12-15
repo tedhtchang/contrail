@@ -7,7 +7,7 @@
 # disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 # =================================================================
 
-name 'ibm-os-ha-controller-node'
+name 'ibm-os-ha-controller-node-without-ml2-plugin'
 description 'IBM OpenStack HA Controller Node role'
 run_list(
   'recipe[ibm-openstack-roles::ha-controller-node-without-ml2-plugin]'
