@@ -42,7 +42,7 @@
     "openstack-bare-metal": "~> 11.0.0",
     "openstack-block-storage": "~> 11.1.0",
     "openstack-common": "~> 11.5.1",
-    "openstack-compute": "~> 11.1.0",
+    "openstack-compute": "~> 11.2.0",
     "openstack-dashboard": "~> 11.0.0",
     "openstack-identity": "~> 11.1.0",
     "openstack-image": "~> 11.0.0",
@@ -57,19 +57,19 @@
     "ibm-openstack-apt-server": "~> 11.0.0",
     "ibm-openstack-common": "~> 11.3.0",
     "ibm-openstack-dr": "~> 11.0.3",
-    "ibm-openstack-ha": "~> 11.1.0",
+    "ibm-openstack-ha": "~> 11.1.1",
     "ibm-openstack-iptables": "~> 11.0.6",
     "ibm-openstack-migration": "~> 11.0.31",
     "ibm-openstack-network": "~> 11.1.0",
     "ibm-openstack-perf-tuning": "~> 11.0.1",
-    "ibm-openstack-powervc-driver": "~> 11.0.2",
+    "ibm-openstack-powervc-driver": "~> 11.0.3",
     "ibm-openstack-prs": "~> 11.1.0",
-    "ibm-openstack-roles": "~> 11.0.4",
+    "ibm-openstack-roles": "~> 11.0.5",
     "ibm-openstack-simple-token": "~> 11.0.1",
     "ibm-openstack-vmware-driver": "~> 11.0.5",
     "ibm-openstack-yum-server": "~> 11.0.0",
-    "ibm-openstack-zvm-driver": "~> 11.0.6",
-    "ibm-sce": "~> 11.0.6",
+    "ibm-openstack-zvm-driver": "~> 11.0.9",
+    "ibm-sce": "~> 11.0.7",
     "ibm-spectrum-scale": "11.0.12",
     "pacemaker": "~> 1.1.4",
     "qpid": "~> 1.0.2"
@@ -84,16 +84,16 @@
       "manage_neutron": false,
       "multi_tenancy": false,
       "router_asn": "64512",
-      "network_ip": "9.30.30.95",
+      "network_ip": "9.30.236.23",
       "network_pfxlen": "25",
       "compute": {
         "dns3": "9.0.0.3",
         "dns2": "9.0.0.2",
         "dns1": "9.30.140.13",
         "netmask": "255.255.255.128",
-        "interface": "eno16777728",
-        "cidr": "9.30.30.0/25",
-        "gateway": "9.30.30.1",
+        "interface": "ens32",
+        "cidr": "9.30.236.0/25",
+        "gateway": "9.30.236.1",
         "domain": "cloud.svl.ibm.com"
       }
     },
@@ -175,12 +175,12 @@
       },
       "ha": {
         "virtualip": {
-          "interface": "eno16777728",
-          "cidr_netmask": "26"
+          "interface": "ens32",
+          "cidr_netmask": "25"
         },
         "virtualip_public": {
           "interface": null,
-          "cidr_netmask": "24"
+          "cidr_netmask": "25"
         },
         "haproxy": {
           "custom_listeners": null
@@ -195,18 +195,21 @@
     },
     "openstack": {
       "endpoints": {
-        "bind_interface": "eno16777728",
+        "bind_interface": "ens32",
         "db": {
-          "bind_interface": "eno16777728"
+          "bind_interface": "ens32"
         },
         "mq": {
-          "bind_interface": "eno16777728"
+          "bind_interface": "ens32"
         },
         "network-openvswitch": {
+          "bind_interface": "ens32"
         },
         "compute-vnc-bind": {
+          "bind_interface": "ens32"
         },
         "compute-vnc-proxy-bind": {
+          "bind_interface": "ens32"
         }
       },
       "compute": {
@@ -224,12 +227,12 @@
         "verbose": "False",
         "debug": "False",
         "openvswitch": {
-          "bridge_mappings": "",
-          "bridge_mapping_interface": ""
+          "bridge_mappings": "default:br-eth1",
+          "bridge_mapping_interface": "br-eth1:eth1"
         },
         "l3": {
           "external_network_bridge": "br-ex",
-          "external_network_bridge_interface": "eno16777728"
+          "external_network_bridge_interface": "eth0"
         }
       },
       "block-storage": {
@@ -241,7 +244,7 @@
             "storwize-1": {
               "volume_driver": "cinder.volume.drivers.ibm.storwize_svc.StorwizeSVCDriver",
               "volume_backend_name": "Storwize1",
-              "backend_host": "9.30.30.96",
+              "backend_host": "9.30.236.24",
               "san_ip": "127.0.0.1",
               "san_private_key": "/v7000_rsa",
               "storwize_svc_volpool_name": "volpool",
@@ -279,10 +282,10 @@
     },
     "ibm-sce": {
       "host": {
-        "ipaddress": "9.30.30.51"
+        "ipaddress": "9.30.236.11"
       },
       "self-service": {
-        "bind_interface": "127.0.0.1"
+        "bind_interface": "9.30.236.11"
       }
     },
     "ibm-cls": {
@@ -408,14 +411,15 @@
     "ibm-openstack": {
       "ha": {
         "virtualip": {
-          "address": "9.30.30.96"
+          "address": "9.30.236.24"
         },
         "virtualip_public": {
-          "address": null
+          "address": "9.30.236.24"
         },
         "haproxy": {
           "excluded_public_listeners": null
-        }
+        },
+        "use_external_db": false
       },
       "remote_files": {
         "mysql2_gem_download_enabled": true,
@@ -438,7 +442,7 @@
       },
       "network": {
         "l3": {
-          "enable": true
+          "enable": false
         }
       }
     },
@@ -526,9 +530,9 @@
         }
       },
       "endpoints": {
-        "host": "9.30.30.96",
+        "host": "9.30.236.24",
         "db": {
-          "host": "9.30.30.96",
+          "host": "9.30.236.24",
           "port": "50001"
         },
         "mq": {
@@ -823,6 +827,10 @@
         "no_snapshot_gb_quota": false,
         "use_default_quota_class": true,
         "enable_v1_api": "True",
+        "rpc_backend": "cinder.openstack.common.rpc.impl_kombu",
+        "rpc_thread_pool_size": 64,
+        "rpc_conn_pool_size": 30,
+        "rpc_response_timeout": 60,
         "api": {
           "auth": {
             "memcached_servers": null,
@@ -967,7 +975,7 @@
     },
     "apache": {
       "mod_ssl": {
-        "cipher_suite": "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4!aNULL!eNULL!LOW!3DES!MD5!EXP!PSK!SRP!DSS:!EDH"
+        "cipher_suite": "ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA:!EDH"
       },
       "proxy": {
         "deny_from": "none",

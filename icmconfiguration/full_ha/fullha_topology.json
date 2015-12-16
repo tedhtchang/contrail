@@ -6,47 +6,35 @@
   "orchestration": "ha_controller_n_compute",
   "nodes": [
     {
-      "fqdn": "sunnyvale-ctl.cloud.svl.ibm.com",
+      "fqdn": "mustang-ctl1.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-ha-controller-node]",
-        "role[ibm-sce-node]",
-        "recipe[contrail::yum-os-controller-repo]",
-        "recipe[contrail::neutron]",
-        "recipe[contrail::postoscontroller]"
+        "role[ibm-os-ha-controller-node]"
       ]
     },
     {
-      "fqdn": "sunnyvale-ctl2.cloud.svl.ibm.com",
+      "fqdn": "mustang-ctl2.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-ha-controller-node]",
-        "role[ibm-sce-node]",
-        "recipe[contrail::yum-os-controller-repo]",
-        "recipe[contrail::neutron]",
-        "recipe[contrail::postoscontroller]"
+        "role[ibm-os-ha-controller-node]"
       ]
     },
     {
-      "fqdn": "sunnyvale-ctl3.cloud.svl.ibm.com",
+      "fqdn": "mustang-ctl3.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-ha-controller-node]",
-        "role[ibm-sce-node]",
-        "recipe[contrail::yum-os-controller-repo]",
-        "recipe[contrail::neutron]",
-        "recipe[contrail::postoscontroller]"
+        "role[ibm-os-ha-controller-node]"
       ]
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "sunnyvale-net.cloud.svl.ibm.com",
+      "fqdn": "mustang-net1.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 11,
@@ -63,7 +51,7 @@
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "sunnyvale-net2.cloud.svl.ibm.com",
+      "fqdn": "mustang-net2.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 11,
@@ -80,7 +68,7 @@
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "sunnyvale-net3.cloud.svl.ibm.com",
+      "fqdn": "mustang-net3.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 11,
@@ -97,7 +85,7 @@
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "sunnyvale-cmp1.cloud.svl.ibm.com",
+      "fqdn": "mustang-cmp1.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 12,
