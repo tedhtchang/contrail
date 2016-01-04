@@ -43,24 +43,24 @@
     "openstack-block-storage": "~> 11.1.0",
     "openstack-common": "~> 11.5.1",
     "openstack-compute": "~> 11.2.0",
-    "openstack-dashboard": "~> 11.0.0",
+    "openstack-dashboard": "~> 11.1.0",
     "openstack-identity": "~> 11.1.0",
     "openstack-image": "~> 11.0.0",
-    "openstack-network": "~> 11.0.0",
+    "openstack-network": "~> 11.1.0",
     "openstack-ops-database": "~> 11.0.0",
     "openstack-ops-messaging": "~> 11.1.0",
-    "openstack-orchestration": "~> 11.0.0",
+    "openstack-orchestration": "~> 11.1.0",
     "openstack-telemetry": "~> 11.0.0",
     "db2": "~> 2.0.3",
     "ibm-cls": "~> 1.0.1",
     "ibm-openstack-apache-proxy": "~> 11.1.2",
     "ibm-openstack-apt-server": "~> 11.0.0",
-    "ibm-openstack-common": "~> 11.3.0",
+    "ibm-openstack-common": "~> 11.4.0",
     "ibm-openstack-dr": "~> 11.0.3",
     "ibm-openstack-ha": "~> 11.1.1",
     "ibm-openstack-iptables": "~> 11.0.6",
     "ibm-openstack-migration": "~> 11.0.31",
-    "ibm-openstack-network": "~> 11.1.0",
+    "ibm-openstack-network": "~> 11.1.1",
     "ibm-openstack-perf-tuning": "~> 11.0.1",
     "ibm-openstack-powervc-driver": "~> 11.0.3",
     "ibm-openstack-prs": "~> 11.1.0",
@@ -159,7 +159,7 @@
       },
       "network": {
         "ip_movement": {
-          "enable": true,
+          "enable": false,
           "wait_before_ping": 50,
           "timeout": 180,
           "recipe_search": "ibm-openstack-roles::ha-controller-node"
@@ -174,6 +174,9 @@
         }
       },
       "ha": {
+        "roles": {
+          "ha_controller_node": "ibm-os-ha-controller-node-without-ml2-plugin"
+        },
         "virtualip": {
           "interface": "ens32",
           "cidr_netmask": "25"
@@ -227,12 +230,12 @@
         "verbose": "False",
         "debug": "False",
         "openvswitch": {
-          "bridge_mappings": "default:br-eth1",
-          "bridge_mapping_interface": "br-eth1:eth1"
+          "bridge_mappings": "default:br-ens32",
+          "bridge_mapping_interface": "br-ens32:ens32"
         },
         "l3": {
           "external_network_bridge": "br-ex",
-          "external_network_bridge_interface": "eth0"
+          "external_network_bridge_interface": "ens32"
         }
       },
       "block-storage": {
@@ -409,6 +412,7 @@
       "yumpriorities_enabled": false
     },
     "ibm-openstack": {
+      "first_region": true,
       "ha": {
         "virtualip": {
           "address": "9.30.236.24"
@@ -627,9 +631,10 @@
           }
         },
         "upload_image": {
+          "cirros-0.3.4-x86_64-disk.img": "https://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img"
         },
         "upload_images": [
-
+          "cirros-0.3.4-x86_64-disk.img"
         ]
       },
       "network": {
@@ -731,9 +736,7 @@
         "network": {
           "use_ipv6": true,
           "service_type": "neutron",
-          "plugins": [
-            "openvswitch"
-          ],
+          "plugins": [],
           "neutron": {
             "cafile": null,
             "service_neutron_metadata_proxy": true,
@@ -786,6 +789,8 @@
           "quota_injected_file_path_length": 255,
           "quota_injected_file_content_bytes": 10240,
           "quota_key_pairs": 100,
+          "block_device_allocate_retries": 60,
+          "block_device_allocate_retries_interval": 3,
           "osapi_max_limit": 3000
         },
         "api": {
@@ -857,6 +862,23 @@
       "orchestration": {
         "debug": "False",
         "verbose": "True",
+        "platform": {
+          "heat_common_packages": [
+            "openstack-heat"
+          ],
+          "heat_api_packages": [
+            "python-heatclient"
+          ],
+          "heat_api_cfn_packages": [
+            "python-heatclient"
+          ],
+          "heat_api_cloudwatch_packages": [
+            "python-heatclient"
+          ],
+          "heat_engine_packages": [
+            "openstack-heat"
+          ]
+        },
         "api": {
           "auth": {
             "memcached_servers": null,
