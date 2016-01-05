@@ -55,3 +55,11 @@ bash "update-neutron" do
     not_if "grep -q 'admin_password = #{neutron_password}' /etc/neutron/neutron.conf"
 end
 
+bash "update-neutron-rabbit" do
+    user "root"
+    code <<-EOH
+        sed -i 's|rabbit_hosts|rabbit_host|' /etc/neutron/neutron.conf
+    EOH
+    not_if node['contrail']['ha'] == true
+end
+
