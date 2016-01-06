@@ -60,6 +60,6 @@ bash "update-neutron-rabbit" do
     code <<-EOH
         sed -i 's|rabbit_hosts|rabbit_host|' /etc/neutron/neutron.conf
     EOH
-    not_if node['contrail']['ha'] == true
+  not_if { node['contrail']['ha'] == true }
 end
 
