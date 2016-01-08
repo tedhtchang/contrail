@@ -8,7 +8,7 @@
 # =================================================================
 
 name 'ibm-os-ha-controller-node-without-ml2-plugin'
-description 'IBM OpenStack HA Controller Node role'
+description 'IBM OpenStack HA Controller Node role without ml2 plugin'
 run_list(
   'recipe[ibm-openstack-roles::ha-controller-node-without-ml2-plugin]'
 )

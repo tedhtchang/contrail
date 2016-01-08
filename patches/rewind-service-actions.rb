@@ -15,8 +15,7 @@ class ::Chef::Recipe # rubocop:disable Documentation
   include ::Openstack
 end
 
-# Do not rewind services of ml2 plugin when use contrail plugin
-if node['recipes'].include?('contrail::neutron')
+if node['roles'].include?('ibm-os-ha-controller-node-without-ml2-plugin')
   tmp_ha_services = node['ibm-openstack']['ha']['pacemaker']['cluster']['managed']['services_to_rewind'].dup
   ml2_agents = ['service[neutron-plugin-openvswitch-agent]',
                 'service[neutron-metadata-agent]',

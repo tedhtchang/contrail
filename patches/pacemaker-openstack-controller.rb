@@ -32,6 +32,8 @@ resouce_names = %w{memcached identity image-api image-registry
                    orchestration-api orchestration-api-cfn orchestration-api-cloudwatch
                    orchestration-engine telemetry-api telemetry-collector telemetry-notification httpd}
 
+resouce_names.delete('identity') unless node['ibm-openstack']['first_region']
+
 order_constraint_names = %w{order-memcached-httpd order-memcached-consoleauth
                             order-network-ovs-network-metadata order-network-metadata-network-l3
                             order-network-metadata-network-dhcp}
@@ -42,8 +44,7 @@ unless node['ibm-openstack']['network']['l3']['enable']
   order_constraint_names.delete('order-network-metadata-network-l3')
 end
 
-# Delete ovs services for non ml2 plugins
-if node['recipes'].include?('contrail::neutron')
+if node['roles'].include?('ibm-os-ha-controller-node-without-ml2-plugin')
   ml2_agents = %w{network-ovs-agent network-metadata-agent
                     network-l3-agent network-dhcp-agent}
   ml2_agents.each do |deleted_agent|
@@ -56,7 +57,6 @@ if node['recipes'].include?('contrail::neutron')
     order_constraint_names.delete(deleted_agent)
   end
 end
-
 # If PRS HA is enabled, then compute-scheduler should not be cloned
 if node['ibm-openstack']['prs']['ha']['enabled']
   resouce_names.delete('compute-scheduler')

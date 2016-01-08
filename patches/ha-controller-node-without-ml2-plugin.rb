@@ -38,6 +38,9 @@ fail "HA controller node is not tagged correctly. The node cannot be tagged as "
   "a db (#{deploy_db_tag}) node if using external database."\
   if node['ibm-openstack']['ha']['use_external_db'] && is_deploy_db
 
+# Determine if this is an additional region.
+is_first_region = node['ibm-openstack']['first_region']
+
 # Include rewind-service-actions recipe.
 # NOTE(wmlynch): It is here so it runs prior to any services notifications.
 #                It will only run if the cluster is configured.
@@ -46,6 +49,12 @@ include_recipe 'ibm-openstack-ha::rewind-service-actions'
 include_recipe 'ibm-openstack-ha::public-endpoint-configure'
 # Include base HA controller node recipes.
 include_recipe 'ibm-openstack-roles::ha-controller-base'
+
+# Include the IP movement recipes. In order to work with haproxy
+# and pacemaker, IP movement should be excuted before them.
+#include_recipe 'ibm-openstack-network::install-ovs'
+#include_recipe 'ibm-openstack-network::ip-movement'
+#include_recipe 'ibm-openstack-network::update-bind-interfaces'
 
 # Include IBM OpenStack cluster recipes.
 # NOTE(rtheis): The cluster setup is only done once on the deploy primary
@@ -79,12 +88,16 @@ include_recipe 'ibm-openstack-common::memcached-server'
 include_recipe 'ibm-openstack-common::controller-selinux'
 
 # Include IBM OpenStack identity recipes.
-include_recipe 'ibm-openstack-simple-token'
-include_recipe 'openstack-identity::server'
+# If this is not the first region, skip these recipes.
+if is_first_region
+  include_recipe 'ibm-openstack-simple-token'
+  include_recipe 'openstack-identity::server'
+end
+# Need identity registration even if it is additional region
 include_recipe 'openstack-identity::registration'
 
 # Includes IBM OpenStack identity ldap recipes.
-include_recipe 'ibm-openstack-common::configure-ldap'
+include_recipe 'ibm-openstack-common::configure-ldap' if is_first_region
 
 # Include IBM OpenStack image recipes.
 include_recipe 'openstack-image::api'
@@ -94,6 +107,11 @@ include_recipe 'openstack-image::image_upload'
 
 # Include IBM OpenStack network recipes.
 include_recipe 'openstack-network::identity_registration'
+#include_recipe 'openstack-network::openvswitch'
+#include_recipe 'openstack-network::dhcp_agent'
+#include_recipe 'ibm-openstack-network::iproute-upgrade'
+#include_recipe 'ibm-openstack-network::setup-l3-agent'
+#include_recipe 'openstack-network::metadata_agent'
 include_recipe 'openstack-network::server'
 
 # Include IBM OpenStack compute recipes.
@@ -143,6 +161,8 @@ if node['ibm-sce']['service']['enabled']
   # SSP service recipes, only for primary controller node for now.
   if is_deploy_primary && is_deploy_db
     include_recipe 'ibm-sce::installsce'
+    include_recipe 'ibm-sce::installJREUpdate'
+    include_recipe 'ibm-sce::installfp'
     include_recipe 'ibm-sce::add-cloud'
     include_recipe 'ibm-openstack-common::sce-selinux'
   end

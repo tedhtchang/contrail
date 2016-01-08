@@ -29,7 +29,7 @@ rm -rf contrail_icm.tar
 # copy and apply fixes
 cd $PACK_WORKSPACE/patches
 yes | cp network.rb /opt/ibm/cmwo/chef-repo/cookbooks/openstack-common/libraries/network.rb
-yes | cp ha-controller-basic-node.rb /opt/ibm/cmwo/chef-repo/cookbooks/ibm-openstack-roles/recipes/ha-controller-basic-node.rb
+#yes | cp ha-controller-basic-node.rb /opt/ibm/cmwo/chef-repo/cookbooks/ibm-openstack-roles/recipes/ha-controller-basic-node.rb
 yes | cp ha-controller-node-without-ml2-plugin.rb /opt/ibm/cmwo/chef-repo/cookbooks/ibm-openstack-roles/recipes/ha-controller-node-without-ml2-plugin.rb
 yes | cp pacemaker-openstack-controller.rb /opt/ibm/cmwo/chef-repo/cookbooks/ibm-openstack-ha/recipes/pacemaker-openstack-controller.rb
 yes | cp rewind-service-actions.rb /opt/ibm/cmwo/chef-repo/cookbooks/ibm-openstack-ha/recipes/rewind-service-actions.rb
