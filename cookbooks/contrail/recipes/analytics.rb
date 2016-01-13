@@ -20,7 +20,6 @@ database_nodes = get_database_nodes
 %w{ analytics-api
     collector
     query-engine
-    alarm-gen
 }.each do |pkg|
     template "/etc/contrail/contrail-#{pkg}.conf" do
         source "contrail-#{pkg}.conf.erb"
