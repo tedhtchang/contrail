@@ -31,6 +31,14 @@ database_nodes = get_database_nodes
     end
 end
 
+template "/etc/contrail/contrail-alarm-gen.conf" do
+   source "contrail-alarm-gen.conf.erb"
+   owner "contrail"
+   group "contrail"
+   mode 00640
+   variables(:servers => database_nodes)
+   action :create
+end
 
 %w{ supervisor-analytics
     contrail-analytics-api

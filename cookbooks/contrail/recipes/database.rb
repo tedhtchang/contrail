@@ -50,7 +50,6 @@ end
 #    end
 #end
 
-#cfgm_vip = get_cfgm_virtual_ipaddr
 cfgm_vip = node['ipaddress']
 
 template "/etc/contrail/contrail-database-nodemgr.conf" do
@@ -59,6 +58,19 @@ template "/etc/contrail/contrail-database-nodemgr.conf" do
   variables( :cfgm_vip           => cfgm_vip)
   notifies :restart, "service[supervisor-database]", :delayed
 end
+
+database_nodes = get_database_nodes
+node_number = node['contrail']['node_number']
+
+template "/usr/share/kafka/config/server.properties" do
+  source "kafka.server.properties.erb"
+  mode 00644
+  variables(:node_number => node_number,
+            :servers => database_nodes,
+            :host_control_ip  => cfgm_vip)
+  notifies :restart, "service[kafka]", :delayed
+end
+
 %w{ supervisor-database contrail-database }.each do |pkg|
     service pkg do
         action [:enable, :start]
