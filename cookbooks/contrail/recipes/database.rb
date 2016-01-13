@@ -68,7 +68,7 @@ template "/usr/share/kafka/config/server.properties" do
   variables(:node_number => node_number,
             :servers => database_nodes,
             :host_control_ip  => cfgm_vip)
-  notifies :restart, "service[kafka]", :delayed
+  action :create
 end
 
 %w{ supervisor-database contrail-database }.each do |pkg|
