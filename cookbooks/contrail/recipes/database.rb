@@ -60,7 +60,7 @@ template "/etc/contrail/contrail-database-nodemgr.conf" do
 end
 
 database_nodes = get_database_nodes
-node_number = node['contrail']['node_number']
+node_number = node['contrail']['node_number'].to_i - 1
 
 template "/usr/share/kafka/config/server.properties" do
   source "kafka.server.properties.erb"
