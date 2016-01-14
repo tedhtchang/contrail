@@ -7,12 +7,12 @@ cd $PACK_WORKSPACE/roles
 knife role from file *.*
 
 # upload cookbooks
-cd $PACK_WORKSPACE/cookbooks
+cd $PACK_WORKSPACE
 knife cookbook upload contrail -o ./
 
 # copy sample config files
 mkdir -p /installer/contrail
-cd $PACK_WORKSPACE/icmconfiguration/full_ha
+cd $PACK_WORKSPACE/files
 cp *.* /installer/contrail
 
 # copy node types file
@@ -27,7 +27,7 @@ tar xvf contrail_icm.tar
 rm -rf contrail_icm.tar
 
 # copy and apply fixes
-cd $PACK_WORKSPACE/patches
+cd $PACK_WORKSPACE/files
 yes | cp network.rb /opt/ibm/cmwo/chef-repo/cookbooks/openstack-common/libraries/network.rb
 #yes | cp ha-controller-basic-node.rb /opt/ibm/cmwo/chef-repo/cookbooks/ibm-openstack-roles/recipes/ha-controller-basic-node.rb
 #yes | cp ha-controller-node-without-ml2-plugin.rb /opt/ibm/cmwo/chef-repo/cookbooks/ibm-openstack-roles/recipes/ha-controller-node-without-ml2-plugin.rb
