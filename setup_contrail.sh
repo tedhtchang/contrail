@@ -8,7 +8,7 @@ knife role from file *.*
 
 # upload cookbooks
 cd $PACK_WORKSPACE
-knife cookbook upload contrail -o ./
+knife cookbook upload contrail -o ../
 
 # copy sample config files
 mkdir -p /installer/contrail
