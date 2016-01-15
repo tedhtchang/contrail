@@ -21,7 +21,7 @@ cp *.* /installer/contrail
 
 # prepare contrail yum repo
 cd $PACK_WORKSPACE
-cp contrail_icm.tar /opt/ibm/cmwo/yum-repo
+cp ../contrail_icm.tar /opt/ibm/cmwo/yum-repo
 cd /opt/ibm/cmwo/yum-repo
 tar xvf contrail_icm.tar
 rm -rf contrail_icm.tar
