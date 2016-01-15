@@ -1,36 +1,55 @@
 {
-  "name": "test2",
+  "name": "fullha",
   "description": "Controller + N Compute Topology - x86 KVM",
-  "environment": "test2",
+  "environment": "fullha",
   "run_sequentially": false,
-  "concurrency": 10,
+  "orchestration": "ha_controller_n_compute",
   "nodes": [
     {
-      "name": "controller",
-      "description": "Cloud controller node",
-      "fqdn": "sunnyvale-ctl.cloud.svl.ibm.com",
+      "fqdn": "sanjose-ctl1.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-single-controller-node]",
-        "role[ibm-os-prs-ego-master]",
-        "role[ibm-os-prs-controller-node]",
-        "role[ibm-sce-node]",
-        "role[contrail-icm-common]",
+        "role[ibm-os-ha-controller-node-without-ml2-plugin]",
+        "recipe[contrail::yum-os-controller-repo]",
+        "recipe[contrail::neutron]",
+        "recipe[contrail::postoscontroller]"
+      ]
+    },
+    {
+      "fqdn": "sanjose-ctl2.cloud.svl.ibm.com",
+      "password": "time4fun",
+      "quit_on_error": true,
+      "run_order_number": 4,
+      "runlist": [
+        "role[ibm-os-ha-controller-node-without-ml2-plugin]",
+        "recipe[contrail::yum-os-controller-repo]",
+        "recipe[contrail::neutron]",
+        "recipe[contrail::postoscontroller]"
+      ]
+    },
+    {
+      "fqdn": "sanjose-ctl3.cloud.svl.ibm.com",
+      "password": "time4fun",
+      "quit_on_error": true,
+      "run_order_number": 4,
+      "runlist": [
+        "role[ibm-os-ha-controller-node-without-ml2-plugin]",
+        "recipe[contrail::yum-os-controller-repo]",
         "recipe[contrail::neutron]",
         "recipe[contrail::postoscontroller]"
       ]
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "sunnyvale-net.cloud.svl.ibm.com",
+      "fqdn": "sanjose-net1.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 11,
       "runlist": [
         "recipe[contrail::prectcontroller]",
-        "role[contrail-icm-common]",
+        "recipe[contrail::yumrepo]",
         "role[contrail-database]",
         "role[contrail-config]",
         "role[contrail-control]",
@@ -41,13 +60,13 @@
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "sunnyvale-net2.cloud.svl.ibm.com",
+      "fqdn": "sanjose-net2.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 11,
       "runlist": [
         "recipe[contrail::prectcontroller]",
-        "role[contrail-icm-common]",
+        "recipe[contrail::yumrepo]",
         "role[contrail-database]",
         "role[contrail-config]",
         "role[contrail-control]",
@@ -58,13 +77,13 @@
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "sunnyvale-net3.cloud.svl.ibm.com",
+      "fqdn": "sanjose-net3.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 11,
       "runlist": [
         "recipe[contrail::prectcontroller]",
-        "role[contrail-icm-common]",
+        "recipe[contrail::yumrepo]",
         "role[contrail-database]",
         "role[contrail-config]",
         "role[contrail-control]",
@@ -75,19 +94,14 @@
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "sunnyvale-cmp1.cloud.svl.ibm.com",
+      "fqdn": "sanjose-cmp1.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
-      "run_order_number": 11,
+      "run_order_number": 12,
       "runlist": [
-        "recipe[contrail::precompute]",
-        "role[ibm-os-compute-node-kvm]",
-        "role[ibm-os-prs-compute-node]",
-        "recipe[contrail::yum-compute-repo]", 
-        "role[contrail-compute]",
-        "recipe[contrail::postcompute]"
+        "role[contrail-icm-compute]"
       ]
     }
   ],
-  "secret_file": "/installer/test2/test2_secret"
+  "secret_file": "/installer/contrail/fullha_secret"
 }
