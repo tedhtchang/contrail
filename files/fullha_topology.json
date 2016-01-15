@@ -6,39 +6,36 @@
   "orchestration": "ha_controller_n_compute",
   "nodes": [
     {
-      "fqdn": "mustang-ctl1.cloud.svl.ibm.com",
+      "fqdn": "sanjose-ctl1.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
         "role[ibm-os-ha-controller-node-without-ml2-plugin]",
-        "role[ibm-sce-node]",
         "recipe[contrail::yum-os-controller-repo]",
         "recipe[contrail::neutron]",
         "recipe[contrail::postoscontroller]"
       ]
     },
     {
-      "fqdn": "mustang-ctl2.cloud.svl.ibm.com",
+      "fqdn": "sanjose-ctl2.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
         "role[ibm-os-ha-controller-node-without-ml2-plugin]",
-        "role[ibm-sce-node]",
         "recipe[contrail::yum-os-controller-repo]",
         "recipe[contrail::neutron]",
         "recipe[contrail::postoscontroller]"
       ]
     },
     {
-      "fqdn": "mustang-ctl3.cloud.svl.ibm.com",
+      "fqdn": "sanjose-ctl3.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
         "role[ibm-os-ha-controller-node-without-ml2-plugin]",
-        "role[ibm-sce-node]",
         "recipe[contrail::yum-os-controller-repo]",
         "recipe[contrail::neutron]",
         "recipe[contrail::postoscontroller]"
@@ -46,7 +43,7 @@
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "mustang-net1.cloud.svl.ibm.com",
+      "fqdn": "sanjose-net1.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 11,
@@ -63,7 +60,7 @@
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "mustang-net2.cloud.svl.ibm.com",
+      "fqdn": "sanjose-net2.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 11,
@@ -80,7 +77,7 @@
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "mustang-net3.cloud.svl.ibm.com",
+      "fqdn": "sanjose-net3.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 11,
@@ -97,7 +94,7 @@
     },
     {
       "description": "This node was added via the deploy node command",
-      "fqdn": "mustang-cmp1.cloud.svl.ibm.com",
+      "fqdn": "sanjose-cmp1.cloud.svl.ibm.com",
       "password": "time4fun",
       "quit_on_error": false,
       "run_order_number": 12,
