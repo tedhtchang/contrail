@@ -14,14 +14,13 @@
 
 include_recipe 'yum'
 
-base_contrail_url = node['contrail']['yum_os_controller_repo_url']
+base_contrail_url = node['contrail']['yum_repo_url']
 
 yum_repository 'contrail_install' do
-        description 'Contrail os controller repo'
+        description 'Contrail_install_repo'
         baseurl base_contrail_url
-        repositoryid 'Contrail_os_controller_repo'
+        repositoryid 'contrail_install_repo'
         gpgcheck false
         sslverify false
         action :create
 end
-
