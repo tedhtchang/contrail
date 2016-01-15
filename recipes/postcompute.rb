@@ -31,7 +31,6 @@ bash "update-nova" do
     user "root"
     code <<-EOH
         sed -i 's|vif_driver=nova.virt.libvirt.vif.LibvirtGenericVIFDriver|# vif_driver=nova.virt.libvirt.vif.LibvirtGenericVIFDriver|' /etc/nova/nova.conf
-#        sed -i 's|network_api_class=nova.network.neutronv2.api.API|# network_api_class=nova.network.neutronv2.api.API|' /etc/nova/nova.conf
     EOH
     not_if "grep -q '# vif_driver=nova.virt.libvirt.vif.LibvirtGenericVIFDriver' /etc/nova/nova.conf"
 end
