@@ -187,11 +187,6 @@
         },
         "haproxy": {
           "custom_listeners": null
-        },
-        "pacemaker": {
-          "cluster": {
-            "recheck_interval_s": "600"
-          }
         }
       }
     },
