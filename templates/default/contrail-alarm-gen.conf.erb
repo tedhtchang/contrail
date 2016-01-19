@@ -12,8 +12,8 @@ log_local = 1
 log_level = SYS_NOTICE
 #log_category =
 log_file = /var/log/contrail/contrail-alarm-gen.log
-kafka_broker_list = <%=node['ipaddress']%>:9092
-zk_list = <%=node['ipaddress']%>:2181
+kafka_broker_list = <%= @servers.collect{|x| x['ipaddress']+':9092'}.join(' ') %>
+zk_list = <%= @servers.collect{|x| x['ipaddress']+':2181'}.join(' ') %>
 
 [DISCOVERY]
 disc_server_ip = <%=node['ipaddress']%>
