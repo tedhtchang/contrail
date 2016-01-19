@@ -11,7 +11,7 @@
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-ha-controller-node-without-ml2-plugin]",
+        "role[ibm-os-ha-controller-node]",
         "recipe[contrail::yum-os-controller-repo]",
         "recipe[contrail::neutron]",
         "recipe[contrail::postoscontroller]"
@@ -23,7 +23,7 @@
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-ha-controller-node-without-ml2-plugin]",
+        "role[ibm-os-ha-controller-node]",
         "recipe[contrail::yum-os-controller-repo]",
         "recipe[contrail::neutron]",
         "recipe[contrail::postoscontroller]"
@@ -35,7 +35,7 @@
       "quit_on_error": true,
       "run_order_number": 4,
       "runlist": [
-        "role[ibm-os-ha-controller-node-without-ml2-plugin]",
+        "role[ibm-os-ha-controller-node]",
         "recipe[contrail::yum-os-controller-repo]",
         "recipe[contrail::neutron]",
         "recipe[contrail::postoscontroller]"

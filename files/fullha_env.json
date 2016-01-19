@@ -174,9 +174,6 @@
         }
       },
       "ha": {
-        "roles": {
-          "ha_controller_node": "ibm-os-ha-controller-node-without-ml2-plugin"
-        },
         "virtualip": {
           "interface": "eno16777728",
           "cidr_netmask": "26"
@@ -475,7 +472,7 @@
       },
       "db": {
         "service_type": "db2",
-        "server_role": "ibm-os-ha-controller-node-without-ml2-plugin",
+        "server_role": "ibm-os-ha-controller-node",
         "bare-metal": {
           "db_name": "ironic"
         },
@@ -517,7 +514,7 @@
       ],
       "mq": {
         "service_type": "rabbitmq",
-        "server_role": "ibm-os-ha-controller-node-without-ml2-plugin",
+        "server_role": "ibm-os-ha-controller-node",
         "durable_queues": true,
         "cluster": true,
         "search_for_cluster_disk_nodes": false,
@@ -638,7 +635,10 @@
         ]
       },
       "network": {
-        "core_plugin": "neutron.plugins.ml2.plugin.Ml2Plugin",
+        "core_plugin": "neutron_plugin_contrail.plugins.opencontrail.contrail_plugin.NeutronPluginContrailCoreV2",
+        "core_plugin_map" {
+           "neutronplugincontrailcorev2": "contrail"
+        }
         "use_namespaces": "True",
         "enable_vpn": false,
         "allow_overlapping_ips": "True",
