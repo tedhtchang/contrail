@@ -50,11 +50,11 @@
       "runlist": [
         "recipe[contrail::prectcontroller]",
         "recipe[contrail::yumrepo]",
-        "role[contrail-database]",
-        "role[contrail-config]",
-        "role[contrail-control]",
-        "role[contrail-webui]",
-        "role[contrail-analytics]",
+        "role[ibm-os-contrail-database]",
+        "role[ibm-os-contrail-config]",
+        "role[ibm-os-contrail-control]",
+        "role[ibm-os-contrail-webui]",
+        "role[ibm-os-contrail-analytics]",
         "recipe[contrail::postctcontroller]"
       ]
     },
@@ -67,11 +67,11 @@
       "runlist": [
         "recipe[contrail::prectcontroller]",
         "recipe[contrail::yumrepo]",
-        "role[contrail-database]",
-        "role[contrail-config]",
-        "role[contrail-control]",
-        "role[contrail-webui]",
-        "role[contrail-analytics]",
+        "role[ibm-os-contrail-database]",
+        "role[ibm-os-contrail-config]",
+        "role[ibm-os-contrail-control]",
+        "role[ibm-os-contrail-webui]",
+        "role[ibm-os-contrail-analytics]",
         "recipe[contrail::postctcontroller]"
       ]
     },
@@ -84,11 +84,11 @@
       "runlist": [
         "recipe[contrail::prectcontroller]",
         "recipe[contrail::yumrepo]",
-        "role[contrail-database]",
-        "role[contrail-config]",
-        "role[contrail-control]",
-        "role[contrail-webui]",
-        "role[contrail-analytics]",
+        "role[ibm-os-contrail-database]",
+        "role[ibm-os-contrail-config]",
+        "role[ibm-os-contrail-control]",
+        "role[ibm-os-contrail-webui]",
+        "role[ibm-os-contrail-analytics]",
         "recipe[contrail::postctcontroller]"
       ]
     },
@@ -99,7 +99,7 @@
       "quit_on_error": false,
       "run_order_number": 12,
       "runlist": [
-        "role[contrail-icm-compute]"
+        "role[ibm-os-contrail-compute-node-kvm]"
       ]
     }
   ],
