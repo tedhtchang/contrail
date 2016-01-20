@@ -25,7 +25,8 @@ default['contrail']['keystone_ip'] = "#{node['openstack']['endpoints']['host']}"
 default['contrail']['os_controller_ip'] = "#{node['openstack']['endpoints']['host']}" 
 default['contrail']['ct_controller_interface'] = node['network']['default_interface'] 
 default['contrail']['kernel_version'] = "3.10.0-229.el7.x86_64"
-    
+default['contrail']['compute']['server_role'] = "contrail-icm-compute"
+
 ### The block for ICM integration  ###
   
 default['contrail']['openstack_release'] = "kilo"
