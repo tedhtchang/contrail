@@ -636,7 +636,7 @@
       },
       "network": {
         "core_plugin": "neutron_plugin_contrail.plugins.opencontrail.contrail_plugin.NeutronPluginContrailCoreV2",
-        "core_plugin_map" {
+        "core_plugin_map": {
            "neutronplugincontrailcorev2": "contrail"
         },
         "use_namespaces": "True",
