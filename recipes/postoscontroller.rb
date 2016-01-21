@@ -63,3 +63,10 @@ bash "update-neutron-rabbit" do
   not_if { node['contrail']['ha'] == true }
 end
 
+bash "restart_neutron" do
+    user "root"
+    code <<-EOH
+        service neutron-server restart
+    EOH
+end
+
