@@ -49,3 +49,10 @@ end
         action [:enable, :start]
     end
 end
+
+bash "restart_analytics" do
+    user "root"
+    code <<-EOH
+        service supervisor-analytics restart
+    EOH
+end
