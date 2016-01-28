@@ -103,7 +103,7 @@ max_control_nodes=2
 [NETWORKS]
 # control-channel IP address used by WEB-UI to connect to vnswad to fetch
 # required information (Optional)
-# control_network_ip=
+control_network_ip=<%="#{node['ipaddress']}"%>
 
 [VIRTUAL-HOST-INTERFACE]
 # Everything in this section is mandatory

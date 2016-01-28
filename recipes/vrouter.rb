@@ -119,6 +119,17 @@ template "/etc/contrail/contrail-vrouter-agent.conf" do
     notifies :restart, "service[contrail-vrouter-agent]", :immediately
 end
 
+%w{ contrail-vrouter-nodemgr
+}.each do |pkg|
+    template "/etc/contrail/#{pkg}.conf" do
+        source "#{pkg}.conf.erb"
+        owner "contrail"
+        group "contrail"
+        mode 00640
+        variables( :cfgm_vip           => contrail_controller_node_ip)
+    end
+end
+
 %w{ contrail-vrouter-agent }.each do |pkg|
     service pkg do
         action [:enable, :start]
