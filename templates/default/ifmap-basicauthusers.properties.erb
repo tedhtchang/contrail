@@ -33,9 +33,7 @@ helper:mapclient
 
 # This is a read-only MAPC
 reader:reader
-<% 
-  @servers.each do |server|
-    <%=server['ipaddress']%>:<%=server['ipaddress']%>
-    <%=server['ipaddress']%>.dns:<%=server['ipaddress']%>.dns
--%>
-
+<% @servers.each do |server| -%>
+<%=server['ipaddress']%>:<%=server['ipaddress']%>
+<%=server['ipaddress']%>.dns:<%=server['ipaddress']%>.dns
+<% end -%>
