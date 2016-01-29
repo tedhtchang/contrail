@@ -22,5 +22,6 @@ yum_repository 'contrail_install' do
         repositoryid 'contrail_install_repo'
         gpgcheck false
         sslverify false
+        priority 15
         action :create
 end
