@@ -62,3 +62,10 @@ bash "update-agent-param" do
     EOH
     not_if "grep -q '/lib/modules/3.10.0-229.el7.x86_64/extra/net/vrouter/vrouter.ko' /etc/contrail/agent_param.tmpl"
 end
+
+bash "restart-supervisor-vrouter" do
+    user "root"
+    code <<-EOH
+    systemctl restart supervisor-vrouter
+    EOH
+end
