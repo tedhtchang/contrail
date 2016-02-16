@@ -8,3 +8,5 @@ version          '0.9.0'
 
 depends 'yum'
 depends 'python'
+depends 'openstack-common', '>= 11.5.0'
+depends 'openstack-identity', '>= 11.0.0'
