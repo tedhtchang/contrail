@@ -26,7 +26,7 @@ yum_repository 'contrail_install' do
         repositoryid 'contrail_install_repo'
         gpgcheck false
         sslverify false
-        priority '15'
+        priority '5'
         action :create
 end
 
@@ -36,7 +36,7 @@ yum_repository 'contrail_controller' do
         repositoryid 'contrail_controller_repo'
         gpgcheck false
         sslverify false
-        priority '10'
+        priority '3'
         action :create
 end
 
