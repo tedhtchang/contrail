@@ -15,7 +15,8 @@
 include_recipe 'yum'
 
 base_contrail_url = node['contrail']['yum_repo_url']
-
+ctlr_contrail_url = node['contrail']['yum_ct_controller_repo_url']
+  
 yum_repository 'contrail_install' do
         description 'Contrail_install_repo'
         baseurl base_contrail_url
