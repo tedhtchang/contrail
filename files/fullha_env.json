@@ -58,18 +58,18 @@
     "ibm-openstack-apt-server": "~> 11.0.0",
     "ibm-openstack-common": "~> 11.4.0",
     "ibm-openstack-dr": "~> 11.0.3",
-    "ibm-openstack-ha": "~> 11.1.1",
+    "ibm-openstack-ha": "~> 11.1.2",
     "ibm-openstack-iptables": "~> 11.0.6",
     "ibm-openstack-migration": "~> 11.0.31",
-    "ibm-openstack-network": "~> 11.1.1",
+    "ibm-openstack-network": "~> 11.1.2",
     "ibm-openstack-perf-tuning": "~> 11.0.1",
     "ibm-openstack-powervc-driver": "~> 11.0.3",
     "ibm-openstack-prs": "~> 11.1.0",
-    "ibm-openstack-roles": "~> 11.0.5",
+    "ibm-openstack-roles": "~> 11.0.6",
     "ibm-openstack-simple-token": "~> 11.0.1",
     "ibm-openstack-vmware-driver": "~> 11.0.5",
     "ibm-openstack-yum-server": "~> 11.0.0",
-    "ibm-openstack-zvm-driver": "~> 11.0.6",
+    "ibm-openstack-zvm-driver": "~> 11.0.9",
     "ibm-sce": "~> 11.0.7",
     "ibm-spectrum-scale": "11.0.12",
     "pacemaker": "~> 1.1.4",
@@ -85,7 +85,7 @@
       "manage_neutron": false,
       "multi_tenancy": false,
       "router_asn": "64512",
-      "network_ip": "9.30.137.50",
+      "network_ip": "9.30.137.39",
       "network_pfxlen": "26",
       "compute": {
         "server_role": "contrail-icm-compute",
@@ -229,12 +229,12 @@
         "verbose": "False",
         "debug": "False",
         "openvswitch": {
-          "bridge_mappings": "default:br-ens32",
-          "bridge_mapping_interface": "br-ens32:ens32"
+          "bridge_mappings": "default:br-eth1",
+          "bridge_mapping_interface": "br-eth1:eth1"
         },
         "l3": {
           "external_network_bridge": "br-ex",
-          "external_network_bridge_interface": "ens32"
+          "external_network_bridge_interface": "eth0"
         }
       },
       "block-storage": {
@@ -246,7 +246,7 @@
             "storwize-1": {
               "volume_driver": "cinder.volume.drivers.ibm.storwize_svc.StorwizeSVCDriver",
               "volume_backend_name": "Storwize1",
-              "backend_host": "9.30.137.56",
+              "backend_host": "9.30.137.40",
               "san_ip": "127.0.0.1",
               "san_private_key": "/v7000_rsa",
               "storwize_svc_volpool_name": "volpool",
@@ -284,7 +284,7 @@
     },
     "ibm-sce": {
       "host": {
-        "ipaddress": "9.30.137.52"
+        "ipaddress": "9.30.137.31"
       },
       "self-service": {
         "bind_interface": "127.0.0.1"
@@ -414,7 +414,7 @@
       "first_region": true,
       "ha": {
         "virtualip": {
-          "address": "9.30.137.56"
+          "address": "9.30.137.40"
         },
         "virtualip_public": {
           "address": null
@@ -533,9 +533,9 @@
         }
       },
       "endpoints": {
-        "host": "9.30.137.56",
+        "host": "9.30.137.40",
         "db": {
-          "host": "9.30.137.56",
+          "host": "9.30.137.40",
           "port": "50001"
         },
         "mq": {
@@ -637,10 +637,7 @@
         ]
       },
       "network": {
-        "core_plugin": "neutron_plugin_contrail.plugins.opencontrail.contrail_plugin.NeutronPluginContrailCoreV2",
-        "core_plugin_map": {
-          "neutronplugincontrailcorev2": "contrail"
-        },
+        "core_plugin": "neutron.plugins.ml2.plugin.Ml2Plugin",
         "use_namespaces": "True",
         "enable_vpn": false,
         "allow_overlapping_ips": "True",
