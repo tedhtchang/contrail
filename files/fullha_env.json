@@ -637,7 +637,7 @@
         ]
       },
       "network": {
-        "core_plugin": "neutron.plugins.ml2.plugin.Ml2Plugin",
+        "core_plugin": "neutron_plugin_contrail.plugins.opencontrail.contrail_plugin.NeutronPluginContrailCoreV2",
         "use_namespaces": "True",
         "enable_vpn": false,
         "allow_overlapping_ips": "True",
