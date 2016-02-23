@@ -18,6 +18,13 @@ template "/etc/contrail/contrail-control.conf" do
     notifies :restart, "service[contrail-control]", :delayed
 end
 
+template "/etc/contrail/contrail-control-nodemgr.conf" do
+    source "contrail-control-nodemgr.conf.erb"
+    mode 00644
+    variables(:cfgm_vip   => cfgm_vip)
+    notifies :restart, "service[contrail-control-nodemgr]", :delayed
+end
+
 template "/etc/contrail/contrail-dns.conf" do
     source "contrail-dns.conf.erb"
     mode 00644
@@ -25,7 +32,7 @@ template "/etc/contrail/contrail-dns.conf" do
     notifies :restart, "service[contrail-dns]", :delayed
 end
 
-%w{ supervisor-control contrail-control contrail-dns }.each do |pkg|
+%w{ supervisor-control contrail-control contrail-control-nodemgr contrail-dns }.each do |pkg|
     service pkg do
         action [:enable, :start]
     end

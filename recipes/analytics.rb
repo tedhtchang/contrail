@@ -19,6 +19,7 @@ database_nodes = get_database_nodes
 cfgm_vip = get_cfgm_virtual_ipaddr
 
 %w{ analytics-api
+    analytics-nodemgr
     collector
     query-engine
 }.each do |pkg|
@@ -45,6 +46,7 @@ end
 
 %w{ supervisor-analytics
     contrail-analytics-api
+    contrail-analytics-nodemgr
     contrail-collector
     contrail-query-engine
 }.each do |pkg|
