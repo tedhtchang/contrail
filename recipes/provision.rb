@@ -30,7 +30,6 @@ admin_password = get_admin_password
 bash "provision_metadata_services" do
     user "root"
     admin_user=node['contrail']['admin_user']
-#    admin_password=get_admin_password
     admin_tenant_name=node['contrail']['admin_tenant_name']
     code <<-EOH
         python /opt/contrail/utils/provision_linklocal.py \
@@ -49,7 +48,6 @@ end
 bash "provision_control" do
     user "root"
     admin_user=node['contrail']['admin_user']
-#    admin_password=get_admin_password
     admin_tenant_name=node['contrail']['admin_tenant_name']
     ctrl_ip=node['ipaddress']
     asn=node['contrail']['router_asn']
@@ -71,7 +69,6 @@ end
 bash "provision_encap_type" do
     user "root"
     admin_user=node['contrail']['admin_user']
-#    admin_password=get_admin_password
     code <<-EOH
         python /opt/contrail/utils/provision_encap.py \
             --admin_user #{admin_user} \
@@ -85,7 +82,6 @@ get_compute_nodes.each do |server|
     bash "provision_vrouter" do
         user "root"
         admin_user=node['contrail']['admin_user']
-#        admin_password=get_admin_password
         admin_tenant_name=node['contrail']['admin_tenant_name']
         hostname=server['hostname']
         hostip=server['ipaddress']
@@ -101,4 +97,58 @@ get_compute_nodes.each do |server|
                 --oper add
         EOH
     end
+end
+
+bash "provision_database_node" do
+    user "root"
+    admin_user=node['contrail']['admin_user']
+    admin_tenant_name=node['contrail']['admin_tenant_name']
+    ctrl_ip=node['ipaddress']
+    hostname=node['hostname']
+    code <<-EOH
+        python /opt/contrail/utils/provision_database_node.py \
+            --admin_user #{admin_user} \
+            --admin_password #{admin_password} \
+            --admin_tenant_name #{admin_tenant_name} \
+            --api_server_ip #{cfgm_ip} \
+            --host_name #{hostname} \
+            --host_ip #{ctrl_ip} \
+            --oper add
+    EOH
+end
+
+bash "provision_config_node" do
+    user "root"
+    admin_user=node['contrail']['admin_user']
+    admin_tenant_name=node['contrail']['admin_tenant_name']
+    ctrl_ip=node['ipaddress']
+    hostname=node['hostname']
+    code <<-EOH
+        python /opt/contrail/utils/provision_config_node.py \
+            --admin_user #{admin_user} \
+            --admin_password #{admin_password} \
+            --admin_tenant_name #{admin_tenant_name} \
+            --api_server_ip #{cfgm_ip} \
+            --host_name #{hostname} \
+            --host_ip #{ctrl_ip} \
+            --oper add
+    EOH
+end
+
+bash "provision_analytics_node" do
+    user "root"
+    admin_user=node['contrail']['admin_user']
+    admin_tenant_name=node['contrail']['admin_tenant_name']
+    ctrl_ip=node['ipaddress']
+    hostname=node['hostname']
+    code <<-EOH
+        python /opt/contrail/utils/provision_analytics_node.py \
+            --admin_user #{admin_user} \
+            --admin_password #{admin_password} \
+            --admin_tenant_name #{admin_tenant_name} \
+            --api_server_ip #{cfgm_ip} \
+            --host_name #{hostname} \
+            --host_ip #{ctrl_ip} \
+            --oper add
+    EOH
 end
