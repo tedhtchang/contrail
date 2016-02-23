@@ -1,6 +1,6 @@
 [DEFAULT]
 minimum_diskGB=4
-hostip=<%=@cfgm_vip%>
+hostip=<%=node['ipaddress']%>
 [DISCOVERY]
 server=<%=@cfgm_vip%>
 port=5998

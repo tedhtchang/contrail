@@ -16,7 +16,7 @@ kafka_broker_list = <%= @servers.collect{|x| x['ipaddress']+':9092'}.join(' ') %
 zk_list = <%= @servers.collect{|x| x['ipaddress']+':2181'}.join(' ') %>
 
 [DISCOVERY]
-disc_server_ip = <%=node['ipaddress']%>
+disc_server_ip = <%=@cfgm_vip%>
 disc_server_port = 5998
 
 [REDIS]

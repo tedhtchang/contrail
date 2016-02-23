@@ -16,6 +16,7 @@ package "contrail-openstack-analytics" do
 end
 
 database_nodes = get_database_nodes
+cfgm_vip = get_cfgm_virtual_ipaddr
 
 %w{ analytics-api
     collector
@@ -26,7 +27,8 @@ database_nodes = get_database_nodes
         owner "contrail"
         group "contrail"
         mode 00640
-        variables(:servers => database_nodes)
+        variables(:servers    => database_nodes,
+                  :cfgm_vip   => cfgm_vip)
         notifies :restart, "service[contrail-#{pkg}]", :immediately
     end
 end
@@ -36,7 +38,8 @@ template "/etc/contrail/contrail-alarm-gen.conf" do
    owner "contrail"
    group "contrail"
    mode 00640
-   variables(:servers => database_nodes)
+   variables(:servers    => database_nodes,
+             :cfgm_vip   => cfgm_vip)
    action :create
 end
 

@@ -50,7 +50,7 @@ end
 #    end
 #end
 
-cfgm_vip = node['ipaddress']
+cfgm_vip = get_cfgm_virtual_ipaddr
 
 template "/etc/contrail/contrail-database-nodemgr.conf" do
   source "contrail-database-nodemgr.conf.erb"
@@ -66,8 +66,7 @@ template "/usr/share/kafka/config/server.properties" do
   source "kafka.server.properties.erb"
   mode 00644
   variables(:node_number => node_number,
-            :servers => database_nodes,
-            :host_control_ip  => cfgm_vip)
+            :servers => database_nodes)
   action :create
 end
 
