@@ -44,11 +44,22 @@ template "/etc/contrail/contrail-alarm-gen.conf" do
    action :create
 end
 
+template "/etc/contrail/contrail-snmp-collector.conf" do
+   source "contrail-snmp-collector.conf.erb"
+   owner "contrail"
+   group "contrail"
+   mode 00640
+   variables(:servers    => database_nodes,
+             :cfgm_vip   => cfgm_vip)
+   action :create
+end
+
 %w{ supervisor-analytics
     contrail-analytics-api
     contrail-analytics-nodemgr
     contrail-collector
     contrail-query-engine
+    contrail-snmp-collector
 }.each do |pkg|
     service pkg do
         action [:enable, :start]
