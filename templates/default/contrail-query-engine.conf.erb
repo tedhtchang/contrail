@@ -9,6 +9,7 @@
   cassandra_server_list = <%= @servers.collect{|x| x['ipaddress']+':9160'}.join(' ') %>
   collectors=127.0.0.1:8086
   hostip = <%=node['ipaddress']%>
+  hostname = <%=node['hostname']%>
 # log_category=
 # log_disable=0
   log_file = /var/log/contrail/contrail-query-engine.log

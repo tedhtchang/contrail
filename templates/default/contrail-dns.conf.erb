@@ -14,6 +14,7 @@
 # rndc_secret=secretkey                    # rndc secret
 hostip = <%= node['ipaddress'] %>
 # hostname= # Retrieved as `hostname`
+hostname = <%=node['hostname']%>
 # http_server_port=8092
 # dns_server_port=53
 log_file = /var/log/contrail/contrail-dns.log

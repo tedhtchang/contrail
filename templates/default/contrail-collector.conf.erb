@@ -19,7 +19,7 @@ kafka_broker_list = <%= @servers.collect{|x| x['ipaddress']+':9092'}.join(' ') %
 hostip = <%=node['ipaddress']%>
 
 # Hostname of analytics node. If this is not configured value from ostname# will be taken
-# hostname=
+hostname = <%=node['hostname']%>
 
 # Http server port for inspecting collector state (useful for debugging)
 # http_server_port=8089

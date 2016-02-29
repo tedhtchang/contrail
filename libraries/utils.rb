@@ -39,7 +39,7 @@ module ::Contrail
   end
 
   def get_compute_nodes
-      result = search(:node, "role:*compute* AND chef_environment:#{node.chef_environment}")
+      result = search(:node, "role:*contrail-icm-compute* AND chef_environment:#{node.chef_environment}")
       result.map! { |x| x['hostname'] == node['hostname'] ? node : x }
       if not result.include?(node) and node.run_list.roles.include?('compute')
           result.push(node)
