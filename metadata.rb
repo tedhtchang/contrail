@@ -4,7 +4,7 @@ maintainer_email 'praneetb@juniper.net'
 license          'All rights reserved'
 description      'Installs/Configures contrail'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.9.1'
+version          '1.0.0'
 
 depends 'yum'
 depends 'python'
